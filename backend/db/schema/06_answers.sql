@@ -4,5 +4,5 @@ CREATE TABLE answers (
   answered_by INTEGER REFERENCES users(id) ON DELETE CASCADE,
   question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
   selected_option INTEGER REFERENCES options(id) ON DELETE CASCADE,
-  custom_suggestion VARCHAR(255)
+  custom_suggestion TEXT
 );

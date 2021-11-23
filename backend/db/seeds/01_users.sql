@@ -1,7 +1,7 @@
 -- Users table seeds here (Example)
 
 INSERT INTO
-users(full_name, email, password, handle)
+users(first_name, last_name, email, password, handle)
 VALUES
     ('Mario', 'Bros', 'mario@nintendo.com', 'test', 'mario'),
     ('Luigi', 'Bros', 'luigi@nintendo.com', 'test', 'luigi'),
