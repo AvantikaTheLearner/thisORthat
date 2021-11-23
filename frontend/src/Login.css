@@ -1,0 +1,27 @@
+.login{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color:blue
+}
+​
+.email{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
+​
+.password{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
+​
+.loginbutton{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
