@@ -1,4 +1,5 @@
 module.exports = (db) => {
+  
   const getUsers = () => {
     const query = {
       text: 'SELECT * FROM users',
@@ -47,10 +48,46 @@ module.exports = (db) => {
       .catch(err => err);
 
   };
+
+  const getCategories = () => {
+    const query = {
+      text: 'SELECT * FROM categories',
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const getOptions = () => {
+    const query = {
+      text: 'SELECT * FROM options',
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const getQuestions = () => {
+    const query = {
+      text: 'SELECT * FROM questions',
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
   return {
     getUsers,
     getUserByEmail,
     addUser,
-    getUsersPosts
+    getUsersPosts,
+    getCategories,
+    getOptions,
+    getQuestions
   };
 };
