@@ -1,5 +1,8 @@
-export default function Category() {
+export default function Category(props) {
+const {name} = props;
+console.log("props.categories: ", props.categories);
+
   return(
-    <h1>3</h1>
+    <p>{name}</p>
   )
 }
