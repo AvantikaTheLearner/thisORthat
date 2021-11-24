@@ -4,4 +4,4 @@ VALUES
 (2, 1, 2, 'Legumes'),
 (4, 2, 3, ''),
 (5, 2, 3, '52 if 5 and 2 are characters :-)'),
-(1, 2, 4, "It\'s always changing.");
+(1, 2, 4, 'Its always changing.');
