@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Login from './Login';
-import './App.css';
+import './App.scss';
 import Myquestions from './components/Myquestions';
 import Home from './components/Home';
 import Createquestion from './components/Createquestion';
@@ -32,31 +32,27 @@ export default function App(props) {
           )}
         </div>
         {currentUser && (
-          <header>
-            <nav>
-              <div>
+          <main className="layout">
+            <section className="sidebar">
+              <img
+                className="sidebar--centered"
+                src="/apple-touch-icon.png"
+                alt="this OR that?"
+              />
+              <hr className="sidebar__separator sidebar--centered" />
+              <nav className="sidebar__menu">
                 <Link to="/home">Home</Link>
-              </div>
-              <div>
                 <Link to="/createquestion">Ask a Question?</Link>
-              </div>
-              <div>
                 <Link to="/category">Categories</Link>
-              </div>
-              <div>
                 <Link to="/search">Search</Link>
-              </div>
-              <div>
                 <Link to="/myquestions">My Questions</Link>
-              </div>
-              <div>
                 <Link to="/update">Update</Link>
-              </div>
-              <div>
                 <Link to="/login">Log Out</Link>
-              </div>
-            </nav>
-          </header>
+              </nav>
+            </section>
+            <section className="schedule">
+            </section>
+          </main>
         )}
       </div>
       <Routes>
