@@ -16,7 +16,6 @@ export default function App(props) {
 
   useEffect(() => {
     axios.get("/api/categories").then((rows) => {
-      console.log("rows.data", rows.data);
       setCategories([...rows.data]);
     });
   },[]);

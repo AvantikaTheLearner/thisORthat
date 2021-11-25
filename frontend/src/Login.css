@@ -109,7 +109,6 @@
   border-width: 3px;
   border-radius: 9px;
   justify-content: space-between;
-  background-image: linear-gradient(90deg, rgba(71, 118, 230, 1) 0%, rgba(142, 84, 233, 1) 100%);
 }
 .desktop12-text2 {
   color: rgba(255, 255, 255, 1);
@@ -123,6 +122,8 @@
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
+  background-image: linear-gradient(90deg, rgba(71, 118, 230, 1) 0%, rgba(142, 84, 233, 1) 100%);
+  border-style: hidden;
 }
 .desktop12-secondary-button32 {
   top: 621px;
@@ -152,10 +153,6 @@
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
-}
-.loginbutton{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 20px;
+  background-image: linear-gradient(90deg, rgba(71, 191, 229, 1) 0%, rgba(83, 215, 233, 1) 100%);
+  border-style: hidden;
 }

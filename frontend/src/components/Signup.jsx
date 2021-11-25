@@ -26,9 +26,7 @@ export default function Signup() {
           <label className="desktop12-text">E-mail</label>
           <label className="desktop12-text1">Password</label>
           <div className="desktop12-secondary-button32">
-            <span className="desktop12-text3">
-              <a href="/signup">CREATE</a>
-            </span>
+            <button type="submit" className="desktop12-text3">CREATE</button>
           </div>
         </form>
       </div>

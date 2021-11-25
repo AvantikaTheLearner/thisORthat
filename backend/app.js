@@ -9,6 +9,7 @@ const usersRouter = require('./routes/users');
 const categoriesRouter = require('./routes/categories');
 const questionsRouter = require('./routes/questions');
 const optionsRouter = require('./routes/options');
+const loginRouter = require('./routes/login');
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/categories', categoriesRouter(dbHelpers));
 app.use('/api/questions', questionsRouter(dbHelpers));
 app.use('/api/options', optionsRouter(dbHelpers));
+
+app.use('/api/login', loginRouter(dbHelpers));
 
 
 module.exports = app;
