@@ -2,6 +2,8 @@ import './Login.css';
 import App from './App';
 import axios from "axios";
 import { useState } from 'react';
+import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Signup from './components/Signup';
 
 export default function Login() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -18,6 +20,7 @@ export default function Login() {
   };
 
   return (
+    <BrowserRouter>
     <div>
       {!currentUser && (
         <div className="desktop12">
@@ -42,12 +45,16 @@ export default function Login() {
               <button type="submit" className="desktop12-text2" onClick={login}>Sign In</button>
             </div>
             <div className="desktop12-secondary-button32">
-              <button type="submit" className="desktop12-text3">CREATE ACCOUNT</button>
+            <Link to="/signup"><button type="submit" className="desktop12-text3">CREATE ACCOUNT</button></Link>
             </div>
           </form>
         </div>
       )}
       {currentUser && <App />}
     </div>
+    <Routes>
+    <Route path="/signup" element={<Signup />} />
+    </Routes>
+    </BrowserRouter>
   );
 }

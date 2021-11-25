@@ -6,7 +6,6 @@ import Createquestion from './components/Createquestion';
 import Category from './components/Category';
 import Search from './components/Search';
 import Updateprofile from './components/Updateprofile';
-import Signup from './components/Signup';
 import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
@@ -39,7 +38,6 @@ export default function App(props) {
               <Link to="/myquestions">My Questions</Link>
               <Link to="/update">Update</Link>
               <Link to="/login">Log Out</Link>
-              <Link to="/signup">Sign Up</Link>
             </nav>
           </section>
           <section className="schedule">
@@ -55,7 +53,6 @@ export default function App(props) {
         <Route path="/search" element={<Search />} />
         <Route path="/myquestions" element={<Myquestions />} />
         <Route path="/update" element={<Updateprofile />} />
-        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );

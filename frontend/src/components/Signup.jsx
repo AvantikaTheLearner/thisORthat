@@ -1,32 +1,33 @@
-import './Signup.css';
+import "./Signup.css";
 
 export default function Signup() {
-
   return (
     <div>
-      <div className="desktop12">
+      <div className="desktop13">
         <img
           src="/Background.png"
           alt="Background13"
-          className="desktop12-image"
+          className="desktop13-image"
         />
         <img
           // src="/Container.png"
           // alt="Container14"
           alt=""
-          className="desktop12-image1"
+          className="desktop13-image1"
         />
-        <input alt="Input18" className="desktop12-image4" />
-        <input alt="Input19" className="desktop12-image5" />
-        <input alt="Input16" className="desktop12-image2" />
-        <input alt="Input17" className="desktop12-image3" />
         <form>
-          <label className="desktop12-text5">First Name</label>
-          <label className="desktop12-text4">Last Name</label>
-          <label className="desktop12-text">E-mail</label>
-          <label className="desktop12-text1">Password</label>
-          <div className="desktop12-secondary-button32">
-            <button type="submit" className="desktop12-text3">CREATE</button>
+          <label className="desktop13-firstname">First Name</label>
+          <input alt="Input18" className="desktop13-input-firstname" />
+          <label className="desktop13-lastname">Last Name</label>
+          <input alt="Input19" className="desktop13-input-lastname" />
+          <label className="desktop13-email">E-mail</label>
+          <input alt="Input16" className="desktop13-input-email" />
+          <label className="desktop13-password">Password</label>
+          <input alt="Input17" className="desktop13-input-password" />
+          <div className="desktop13-secondary-button32">
+            <button type="submit" className="desktop13-create">
+              CREATE
+            </button>
           </div>
         </form>
       </div>

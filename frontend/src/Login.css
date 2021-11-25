@@ -109,6 +109,7 @@
   border-width: 3px;
   border-radius: 9px;
   justify-content: space-between;
+  background-image: linear-gradient(90deg, rgba(71, 118, 230, 1) 0%, rgba(142, 84, 233, 1) 100%);
 }
 .desktop12-text2 {
   color: rgba(255, 255, 255, 1);
