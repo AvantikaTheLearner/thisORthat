@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = ({getUserByEmail}) => {
+module.exports = ({addUser}) => {
   router.post('/', function(req, res, next) {
-    const { email } = req.body;
-    getUserByEmail(email)
+    const { firstName, lastName, email, password } = req.body;
+    addUser(firstName, lastName, email, password)
       .then((user) => {
         req.session.user_id = user.id;
         res.json({user});

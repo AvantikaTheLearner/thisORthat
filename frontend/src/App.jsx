@@ -10,7 +10,6 @@ import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
 export default function App(props) {
-  
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -18,6 +17,12 @@ export default function App(props) {
       setCategories([...rows.data]);
     });
   },[]);
+
+  const logout = function(e) {
+    e.preventDefault();
+    axios
+      .post("/api/logout", {})
+  };
 
   return (
     <BrowserRouter>
@@ -37,7 +42,7 @@ export default function App(props) {
               <Link to="/search">Search</Link>
               <Link to="/myquestions">My Questions</Link>
               <Link to="/update">Update</Link>
-              <Link to="/login">Log Out</Link>
+              <Link to="/login"><button type="submit" onClick={logout}>Log Out</button></Link>
             </nav>
           </section>
           <section className="schedule">

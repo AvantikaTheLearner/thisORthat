@@ -2,8 +2,6 @@ import './Login.css';
 import App from './App';
 import axios from "axios";
 import { useState } from 'react';
-import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Signup from './components/Signup';
 
 export default function Login() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -20,7 +18,7 @@ export default function Login() {
   };
 
   return (
-    <BrowserRouter>
+    <>
     <div>
       {!currentUser && (
         <div className="desktop12">
@@ -36,8 +34,8 @@ export default function Login() {
             className="desktop12-image1"
           />
           <img src="/Avatar.png" alt="Avatar15" className="desktop12-svg" />
-          <input alt="Input16" onChange={e => setEmail(e.target.value)} className="desktop12-image2" />
-          <input alt="Input17" className="desktop12-image3" />
+          <input alt="Input16" name="email" onChange={e => setEmail(e.target.value)} className="desktop12-image2" />
+          <input alt="Input17" type="password" name="password" className="desktop12-image3" />
           <form>
             <label className="desktop12-text">E-mail</label>
             <label className="desktop12-text1">Password</label>
@@ -45,16 +43,14 @@ export default function Login() {
               <button type="submit" className="desktop12-text2" onClick={login}>Sign In</button>
             </div>
             <div className="desktop12-secondary-button32">
-            <Link to="/signup"><button type="submit" className="desktop12-text3">CREATE ACCOUNT</button></Link>
+            <a href="/signup"><button type="submit" className="desktop12-text3">CREATE ACCOUNT</button></a>
             </div>
           </form>
         </div>
       )}
-      {currentUser && <App />}
+      {/* {currentUser && <App />} */}
     </div>
-    <Routes>
-    <Route path="/signup" element={<Signup />} />
-    </Routes>
-    </BrowserRouter>
+    {currentUser && <App />}
+    </>
   );
 }
