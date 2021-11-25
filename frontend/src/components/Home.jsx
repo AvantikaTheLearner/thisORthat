@@ -1,5 +1,6 @@
-export default function Home() {
-  return(
-    <h1>1</h1>
-  )
+export default function Home(props) {
+
+  return (
+  <p>props.question</p>
+  );
 }

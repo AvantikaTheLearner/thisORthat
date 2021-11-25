@@ -25,6 +25,7 @@ export default function Login() {
     axios.post("/api/login", { email }).then((rows) => {
       setCurrentUser(rows.data);
     });
+    console.log("currentUser", currentUser)
   };
 
   return (
@@ -112,7 +113,7 @@ export default function Login() {
           </form>
         </div>
       )}
-      {currentUser && <App />}
+      {currentUser && <App currentUser={currentUser} />}
     </div>
   );
 }

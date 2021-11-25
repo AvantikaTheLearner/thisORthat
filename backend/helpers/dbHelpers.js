@@ -35,12 +35,13 @@ module.exports = (db) => {
       .catch(err => err);
   };
 
-  const getUsersPosts = () => {
+  const getUsersQuestions = (id) => {
     const query = {
-      text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
+      text: `SELECT users.id as user_id, questions.question_text
     FROM users
-    INNER JOIN posts
-    ON users.id = posts.user_id`
+    INNER JOIN questions
+    ON users.id = questions.user_id
+    WHERE users.id = ${id}`
     };
 
     return db.query(query)
@@ -85,7 +86,7 @@ module.exports = (db) => {
     getUsers,
     getUserByEmail,
     addUser,
-    getUsersPosts,
+    getUsersQuestions,
     getCategories,
     getOptions,
     getQuestions
