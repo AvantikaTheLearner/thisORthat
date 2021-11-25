@@ -74,7 +74,10 @@ module.exports = (db) => {
 
   const getQuestions = () => {
     const query = {
-      text: 'SELECT * FROM questions',
+      text: `SELECT questions.id as question_id, questions.question_text, options.option_text
+      FROM questions
+      INNER JOIN options
+      ON questions.id = options.question_id`,
     };
 
     return db

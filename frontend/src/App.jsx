@@ -34,11 +34,11 @@ export default function App(props) {
   //   });
   // }, []);
 
-  useEffect(() => {
-    axios.get("/api/options").then((rows) => {
-      setOptions(rows.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get("/api/options").then((rows) => {
+  //     setOptions(rows.data);
+  //   });
+  // }, []);
 
   const logout = function(e) {
     e.preventDefault();
@@ -73,13 +73,13 @@ export default function App(props) {
         </main>
       </div>
       <Routes>
-        <Route path="/home" element={<Home question={questions.question_text} options={options} />} />
+        <Route path="/home" element={<Home question={questions.question_text} />} />
         <Route path="/createquestion" element={<Createquestion />} />
         <Route path="/category"
           element={categories.map(category => (<Category key={category.id} name={category.name} />))}
         />
         <Route path="/search" element={<Search />} />
-        <Route path="/questions" element={<Questions questions={questions} options={options} />} />
+        <Route path="/questions" element={<Questions questions={questions} />} />
         <Route path="/update" element={<Updateprofile />} />
       </Routes>
     </BrowserRouter>
