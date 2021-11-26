@@ -15,6 +15,8 @@ export default function App(props) {
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [options, setOptions] = useState([]);
+  const [searchquestion, setSearchQuestion] = useState([]);
+  const [searchtext, setSearchText] = useState("");
 
   useEffect(() => {
     axios.get("/api/categories").then((rows) => {
@@ -46,6 +48,14 @@ export default function App(props) {
       .post("/api/logout", {})
   };
 
+  const search = function (e) {
+    e.preventDefault();
+    axios.get("/api/search").then((rows) => {
+      setSearchQuestion(rows.data);
+      console.log("setSearchQuestion", rows.data)
+    });
+  };
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -61,7 +71,15 @@ export default function App(props) {
               <Link to="/home">Home</Link>
               <Link to="/createquestion">Ask a Question?</Link>
               <Link to="/category">Categories</Link>
-              <Link to="/search">Search</Link>
+              <form>
+              <input
+              name="search"
+              placeholder="search question by Text"
+              onChange={(e) => setSearchText(e.target.value)}
+              className="search"
+            />
+              <Link to="/search"><button type="submit" onClick={search}>Search</button></Link>
+              </form>
               <Link to="/questions">Questions</Link>
               <Link to="/update">Update</Link>
               <Link to="">{currentUser.first_name}</Link>
@@ -78,7 +96,7 @@ export default function App(props) {
         <Route path="/category"
           element={categories.map(category => (<Category key={category.id} name={category.name} />))}
         />
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<Search question={searchquestion.question_text} />} />
         <Route path="/questions" element={<Questions questions={questions} />} />
         <Route path="/update" element={<Updateprofile />} />
       </Routes>

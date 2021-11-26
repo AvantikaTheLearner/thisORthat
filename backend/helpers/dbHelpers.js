@@ -46,6 +46,20 @@ module.exports = (db) => {
       .catch(err => err);
   };
 
+  const searchQuestionByText = (title) => {
+    const query = {
+      text: `SELECT * FROM questions
+      INNER JOIN options
+      ON questions.id = options.question_id
+      WHERE questions.question_text LIKE '%$1%'` ,
+      values: [title]
+    };
+
+    return db.query(query)
+      .then(result => result.rows)
+      .catch(err => err);
+  };
+
   const getUsersQuestions = (id) => {
     const query = {
       text: `SELECT users.id as user_id, questions.question_text
@@ -104,6 +118,7 @@ module.exports = (db) => {
     getUsersQuestions,
     getCategories,
     getOptions,
-    getQuestions
+    getQuestions,
+    searchQuestionByText
   };
 };

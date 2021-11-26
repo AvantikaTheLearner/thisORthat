@@ -1,5 +1,7 @@
-export default function Search() {
+export default function Search(props) {
   return(
-    <h1>4</h1>
+    <div>
+      <p>{props.question}</p>
+    </div>
   )
 }

@@ -12,6 +12,7 @@ const questionsRouter = require('./routes/questions');
 const optionsRouter = require('./routes/options');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
+const searchRouter = require('./routes/search');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/categories', categoriesRouter(dbHelpers));
 app.use('/api/questions', questionsRouter(dbHelpers));
 app.use('/api/options', optionsRouter(dbHelpers));
+app.use('/api/search', searchRouter(dbHelpers));
 
 app.use('/api/login', loginRouter(dbHelpers));
 app.use('/api/signup', signupRouter(dbHelpers));
