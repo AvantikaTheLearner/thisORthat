@@ -35,6 +35,17 @@ module.exports = (db) => {
       .catch(err => err);
   };
 
+  const addQuestion = (userId, question, category) => {
+    const query = {
+      text: `INSERT INTO questions (user_id, category_id, question_text) VALUES ($1, $2, $3) RETURNING *` ,
+      values: [userId, category, question]
+    };
+
+    return db.query(query)
+      .then(result => result.rows[0])
+      .catch(err => err);
+  };
+
   const getUsersQuestions = (id) => {
     const query = {
       text: `SELECT users.id as user_id, questions.question_text
@@ -89,6 +100,7 @@ module.exports = (db) => {
     getUsers,
     getUserByEmail,
     addUser,
+    addQuestion,
     getUsersQuestions,
     getCategories,
     getOptions,

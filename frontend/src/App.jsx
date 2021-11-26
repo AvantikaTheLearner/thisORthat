@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.scss';
 import Questions from './components/Questions';
 import Home from './components/Home';
-import Createquestion from './components/Createquestion';
+import CreateQuestion from './components/CreateQuestion';
 import Category from './components/Category';
 import Search from './components/Search';
 import Updateprofile from './components/Updateprofile';
@@ -53,10 +53,10 @@ export default function App(props) {
           <section className="sidebar">
             <img
               className="sidebar--centered"
-              src="/apple-touch-icon.png"
+              src="/android-chrome-192x192.png"
               alt="this OR that?"
             />
-            <hr className="sidebar__separator sidebar--centered" />
+            <hr className="sidebar__separator" />
             <nav className="sidebar__menu">
               <Link to="/home">Home</Link>
               <Link to="/createquestion">Ask a Question?</Link>
@@ -74,7 +74,7 @@ export default function App(props) {
       </div>
       <Routes>
         <Route path="/home" element={<Home question={questions.question_text} />} />
-        <Route path="/createquestion" element={<Createquestion />} />
+        <Route path="/createquestion" element={<CreateQuestion />} />
         <Route path="/category"
           element={categories.map(category => (<Category key={category.id} name={category.name} />))}
         />

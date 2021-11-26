@@ -15,13 +15,15 @@
 
   &--centered {
     align-self: center;
+    max-width: 10%;
   }
 
   &__separator {
-    width: 90%;
+    width: 92%;
     margin: $spacing 0;
     border: solid 1px;
     color: darken($white, 5%);
+    align-self: center;
   }
 
   &__menu {
