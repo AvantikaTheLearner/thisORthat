@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = ({searchQuestionByText}) => {
-  router.get('/', function(req, res, next) {
-    const { search } = req.body;
+  router.post('/', function(req, res, next) {
+    const title = req.body.search;
     console.log("req.body", req.body);
-    searchQuestionByText(search)
+    searchQuestionByText(title)
       .then((question) => {
         console.log("searchquestion", question);
         res.json(question);

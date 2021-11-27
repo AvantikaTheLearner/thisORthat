@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Createquestion() {
-  const [currentUser, setCurrentUser] = useState(null);
+export default function Createquestion(props) {
+  const {currentUser} = props;
   const [category, setCategory] = useState(4);
   const [question, setQuestion] = useState("");
   const [option, setOption] = useState("");
 
-  useEffect(() => {
+  const newQuestion = function(e) {
+    e.preventDefault();
     axios
-      .post("/api/questions/new", { question, option, category })
+      .post("/api/questions/new", { question, option, category, currentUser })
       .then((rows) => {
         setQuestion(rows.data);
       });
-  }, []);
+  };
 
   return (
     <div className="createquestion">
@@ -23,6 +24,7 @@ export default function Createquestion() {
           <input
             alt="Input16"
             name="question"
+            type="question"
             onChange={(e) => setQuestion(e.target.value)}
             className="createquestion-image2"
           />
@@ -32,13 +34,14 @@ export default function Createquestion() {
           <input
             alt="Input17"
             name="option"
+            type="question"
             onChange={(e) => setOption(e.target.value)}
             className="createquestion-image3"
           />
         </div>
         <div>
           <label for="category">Category</label>
-          <select name="category">
+          <select name="category" onChange={(e) => setCategory(e.target.value)}>
             <option value="1">Movies</option>
             <option value="2">Music</option>
             <option value="3">Books</option>
@@ -52,7 +55,7 @@ export default function Createquestion() {
           </select>
         </div>
         <div className="createquestion-primary-button26">
-          <button type="submit" className="createquestion-text2">
+          <button type="submit" className="createquestion-text2" onClick={newQuestion}>
             Submit
           </button>
         </div>

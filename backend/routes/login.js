@@ -8,7 +8,6 @@ module.exports = ({getUserByEmail}) => {
       .then((user) => {
         req.session.user_id = user.id;
         res.json({user});
-        console.log("user", user);
       })
       .catch((err) => res.json({
         error: err.message

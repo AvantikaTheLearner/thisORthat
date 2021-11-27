@@ -6,7 +6,7 @@ import CreateQuestion from "./components/CreateQuestion";
 import Categories from "./components/Categories";
 import Search from "./components/Search";
 import Updateprofile from "./components/Updateprofile";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 import Login from "./Login";
 
@@ -15,8 +15,6 @@ export default function App(props) {
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [options, setOptions] = useState([]);
-  const [searchquestion, setSearchQuestion] = useState([]);
-  const [searchtext, setSearchText] = useState("");
 
   useEffect(() => {
     axios.get("/api/categories").then((rows) => {
@@ -25,16 +23,16 @@ export default function App(props) {
   }, []);
 
   useEffect(() => {
-    axios.get("/api/questions").then((rows) => {
+    axios.get("/api/questions/withanswers").then((rows) => {
       setQuestions(rows.data);
     });
   }, []);
 
-  // useEffect(() => {
-  //   axios.get(`/api/users/questions/${currentUser.id}`).then((rows) => {
-  //     setQuestions(rows.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    axios.post("/api/questions/withanswers", { currentUser }).then((rows) => {
+      setQuestions(rows.data);
+    });
+  }, []);
 
   // useEffect(() => {
   //   axios.get("/api/options").then((rows) => {
@@ -49,16 +47,8 @@ export default function App(props) {
     });
   };
 
-  const search = function (e) {
-    e.preventDefault();
-    axios.get("/api/search").then((rows) => {
-      setSearchQuestion(rows.data);
-      console.log("setSearchQuestion", rows.data);
-    });
-  };
-
   return (
-    <BrowserRouter>
+    <>
       <div className="App">
         <main className="layout">
           <section className="sidebar">
@@ -72,19 +62,7 @@ export default function App(props) {
               <Link to="/home">Home</Link>
               <Link to="/createquestion">Ask a Question?</Link>
               <Link to="/category">Categories</Link>
-              <form>
-                <input
-                  name="search"
-                  placeholder="search question by Text"
-                  onChange={(e) => setSearchText(e.target.value)}
-                  className="search"
-                />
-                <Link to="/search">
-                  <button type="submit" onClick={search}>
-                    Search
-                  </button>
-                </Link>
-              </form>
+              <Link to="/search">Search</Link>
               <Link to="/questions">Questions</Link>
               <Link to="/update">Update</Link>
               <p style={{ color: "white" }}>
@@ -97,50 +75,45 @@ export default function App(props) {
               </Link>
             </nav>
           </section>
-          <section className="schedule"></section>
+          <Routes>
+            <Route
+              path="/home"
+              element={<Home currentUser={currentUser} questions={questions} />}
+            />
+            <Route
+              path="/createquestion"
+              element={<CreateQuestion currentUser={currentUser} />}
+            />
+            <Route
+              path="/category"
+              element={
+                <Categories currentUser={currentUser} categories={categories} />
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <Search
+                  currentUser={currentUser}
+                  // question={searchquestion.question_text}
+                />
+              }
+            />
+            <Route
+              path="/questions"
+              element={
+                <Questions currentUser={currentUser} questions={questions} />
+              }
+            />
+            <Route
+              path="/update"
+              element={<Updateprofile currentUser={currentUser} />}
+            />
+            <Route path="/login" element={!currentUser && <Login />} />
+          </Routes>
+          {/* <section className="schedule"></section> */}
         </main>
       </div>
-      <Routes>
-        <Route
-          path="/home"
-          element={
-            <Home
-              currentUser={currentUser}
-              question={questions.question_text}
-            />
-          }
-        />
-        <Route
-          path="/createquestion"
-          element={<CreateQuestion currentUser={currentUser} />}
-        />
-        <Route
-          path="/category"
-          element={
-            <Categories currentUser={currentUser} categories={categories} />
-          }
-        />
-        <Route
-          path="/search"
-          element={
-            <Search
-              currentUser={currentUser}
-              question={searchquestion.question_text}
-            />
-          }
-        />
-        <Route
-          path="/questions"
-          element={
-            <Questions currentUser={currentUser} questions={questions} />
-          }
-        />
-        <Route
-          path="/update"
-          element={<Updateprofile currentUser={currentUser} />}
-        />
-        <Route path="/login" element={!currentUser && <Login />} />
-      </Routes>
-    </BrowserRouter>
+    </>
   );
 }

@@ -26,8 +26,8 @@ module.exports = (db) => {
 
   const addUser = (firstName, lastName, email, password) => {
     const query = {
-      text: `INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *` ,
-      values: [firstName, lastName, email, password]
+      text: `INSERT INTO users (first_name, last_name, email, password, handle) VALUES ($1, $2, $3, $4, $5) RETURNING *` ,
+      values: [firstName, lastName, email, password, firstName]
     };
 
     return db.query(query)
@@ -53,7 +53,7 @@ module.exports = (db) => {
     };
 
     return db.query(query)
-      .then(result => result.rows[0])
+      .then(result => result.rows)
       .catch(err => err);
   };
 
@@ -62,7 +62,7 @@ module.exports = (db) => {
       text: `SELECT * FROM questions
       INNER JOIN options
       ON questions.id = options.question_id
-      WHERE questions.question_text LIKE '%$1%'` ,
+      WHERE questions.question_text LIKE '%' + $1 + '%'` ,
       values: [title]
     };
 
@@ -108,12 +108,38 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const getQuestions = () => {
+  const getQuestionsWithAnswers = () => {
+    const query = {
+      text: `SELECT questions.user_id, questions.id as question_id, questions.question_text, options.option_text
+      FROM questions
+      INNER JOIN options
+      ON questions.id = options.question_id`,
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+  const getQuestionsWithAnswersforUser = (userId) => {
     const query = {
       text: `SELECT questions.id as question_id, questions.question_text, options.option_text
       FROM questions
       INNER JOIN options
-      ON questions.id = options.question_id`,
+      ON questions.id = options.question_id
+      WHERE questions.user_id = $1`,
+      values: [userId]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const getQuestions = () => {
+    const query = {
+      text: 'SELECT * FROM questions',
     };
 
     return db
@@ -127,10 +153,12 @@ module.exports = (db) => {
     addUser,
     addQuestion,
     addNewCategory,
+    getQuestionsWithAnswers,
     getUsersQuestions,
     getCategories,
     getOptions,
     getQuestions,
-    searchQuestionByText
+    searchQuestionByText,
+    getQuestionsWithAnswersforUser
   };
 };
