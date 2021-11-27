@@ -31,7 +31,7 @@ module.exports = (db) => {
     };
 
     return db.query(query)
-      .then(result => result.rows[0])
+      .then(result => result.rows)
       .catch(err => err);
   };
 
@@ -39,6 +39,17 @@ module.exports = (db) => {
     const query = {
       text: `INSERT INTO questions (user_id, category_id, question_text) VALUES ($1, $2, $3) RETURNING *` ,
       values: [userId, category, question]
+    };
+
+    return db.query(query)
+      .then(result => result.rows[0])
+      .catch(err => err);
+  };
+
+  const addNewCategory = (category) => {
+    const query = {
+      text: `INSERT INTO categories (name) VALUES ($1) RETURNING *` ,
+      values: [category]
     };
 
     return db.query(query)
@@ -115,6 +126,7 @@ module.exports = (db) => {
     getUserByEmail,
     addUser,
     addQuestion,
+    addNewCategory,
     getUsersQuestions,
     getCategories,
     getOptions,

@@ -1,6 +1,6 @@
 export default function Home(props) {
 
   return (
-  <p>props.question</p>
+  <p>{props.question}</p>
   );
 }

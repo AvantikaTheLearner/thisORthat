@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import './App.scss';
-import Questions from './components/Questions';
-import Home from './components/Home';
-import CreateQuestion from './components/CreateQuestion';
-import Category from './components/Category';
-import Search from './components/Search';
-import Updateprofile from './components/Updateprofile';
-import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import "./App.scss";
+import Questions from "./components/Questions";
+import Home from "./components/Home";
+import CreateQuestion from "./components/CreateQuestion";
+import Categories from "./components/Categories";
+import Search from "./components/Search";
+import Updateprofile from "./components/Updateprofile";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
+import Login from "./Login";
 
 export default function App(props) {
-  const {currentUser} = props;
-  console.log("props", props);
+  let { currentUser } = props;
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [options, setOptions] = useState([]);
@@ -22,7 +22,7 @@ export default function App(props) {
     axios.get("/api/categories").then((rows) => {
       setCategories([...rows.data]);
     });
-  },[]);
+  }, []);
 
   useEffect(() => {
     axios.get("/api/questions").then((rows) => {
@@ -42,17 +42,18 @@ export default function App(props) {
   //   });
   // }, []);
 
-  const logout = function(e) {
+  const logout = function (e) {
     e.preventDefault();
-    axios
-      .post("/api/logout", {})
+    axios.post("/api/logout", {}).then((rows) => {
+      //currentUser = null;
+    });
   };
 
   const search = function (e) {
     e.preventDefault();
     axios.get("/api/search").then((rows) => {
       setSearchQuestion(rows.data);
-      console.log("setSearchQuestion", rows.data)
+      console.log("setSearchQuestion", rows.data);
     });
   };
 
@@ -72,33 +73,73 @@ export default function App(props) {
               <Link to="/createquestion">Ask a Question?</Link>
               <Link to="/category">Categories</Link>
               <form>
-              <input
-              name="search"
-              placeholder="search question by Text"
-              onChange={(e) => setSearchText(e.target.value)}
-              className="search"
-            />
-              <Link to="/search"><button type="submit" onClick={search}>Search</button></Link>
+                <input
+                  name="search"
+                  placeholder="search question by Text"
+                  onChange={(e) => setSearchText(e.target.value)}
+                  className="search"
+                />
+                <Link to="/search">
+                  <button type="submit" onClick={search}>
+                    Search
+                  </button>
+                </Link>
               </form>
               <Link to="/questions">Questions</Link>
               <Link to="/update">Update</Link>
-              <Link to="">{currentUser.first_name}</Link>
-              <Link to="/login"><button type="submit" onClick={logout}>Log Out</button></Link>
+              <p style={{ color: "white" }}>
+                Welcome : {currentUser.first_name}!
+              </p>
+              <Link to="/login">
+                <button type="submit" onClick={logout}>
+                  Log Out
+                </button>
+              </Link>
             </nav>
           </section>
-          <section className="schedule">
-          </section>
+          <section className="schedule"></section>
         </main>
       </div>
       <Routes>
-        <Route path="/home" element={<Home question={questions.question_text} />} />
-        <Route path="/createquestion" element={<CreateQuestion />} />
-        <Route path="/category"
-          element={categories.map(category => (<Category key={category.id} name={category.name} />))}
+        <Route
+          path="/home"
+          element={
+            <Home
+              currentUser={currentUser}
+              question={questions.question_text}
+            />
+          }
         />
-        <Route path="/search" element={<Search question={searchquestion.question_text} />} />
-        <Route path="/questions" element={<Questions questions={questions} />} />
-        <Route path="/update" element={<Updateprofile />} />
+        <Route
+          path="/createquestion"
+          element={<CreateQuestion currentUser={currentUser} />}
+        />
+        <Route
+          path="/category"
+          element={
+            <Categories currentUser={currentUser} categories={categories} />
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <Search
+              currentUser={currentUser}
+              question={searchquestion.question_text}
+            />
+          }
+        />
+        <Route
+          path="/questions"
+          element={
+            <Questions currentUser={currentUser} questions={questions} />
+          }
+        />
+        <Route
+          path="/update"
+          element={<Updateprofile currentUser={currentUser} />}
+        />
+        <Route path="/login" element={!currentUser && <Login />} />
       </Routes>
     </BrowserRouter>
   );

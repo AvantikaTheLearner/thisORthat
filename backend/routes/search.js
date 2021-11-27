@@ -3,9 +3,9 @@ const router = express.Router();
 
 module.exports = ({searchQuestionByText}) => {
   router.get('/', function(req, res, next) {
-    const title = req.body.search;
-    console.log("title", title);
-    searchQuestionByText(title)
+    const { search } = req.body;
+    console.log("req.body", req.body);
+    searchQuestionByText(search)
       .then((question) => {
         console.log("searchquestion", question);
         res.json(question);

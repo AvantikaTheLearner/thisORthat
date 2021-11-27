@@ -10,8 +10,9 @@ module.exports = ({ getQuestions, addQuestion }) => {
       }));
   });
 
+  //body parser is used to read the values of the form entered in browser accessing through req.body
   router.post('/new', function(req, res, next) {
-    const userId = req.currentUser.id; // Should I use the body parser to get the current user?
+    const userId = req.currentUser.id;
     const { question, category, option } = req.body;
     addQuestion(userId, question, category)
       .then((question) => res.json(question))

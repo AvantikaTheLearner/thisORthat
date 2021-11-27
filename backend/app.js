@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./db');
 const dbHelpers = require('./helpers/dbHelpers')(db);
+const bodyParser = require("body-parser");
 
 const usersRouter = require('./routes/users');
 const categoriesRouter = require('./routes/categories');
@@ -16,6 +17,7 @@ const searchRouter = require('./routes/search');
 
 const app = express();
 
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieSession({
   name: 'session',
   keys: ["cookie session to encrypt the cookies"],
