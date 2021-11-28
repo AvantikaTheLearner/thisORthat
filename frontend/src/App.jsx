@@ -17,16 +17,7 @@ export default function App(props) {
   const [options, setOptions] = useState([]);
 
   //----------------------------------------------------------
-  const [searchquestion, setSearchQuestion] = useState([]);
-  const [searchtext, setSearchText] = useState("");
 
-  const search = function (e) {
-    e.preventDefault();
-    axios.post("/api/search", {searchtext}).then((rows) => {
-      setSearchQuestion(rows.data);
-      console.log("setSearchQuestion", rows.data);
-    });
-  };
   //----------------------------------------------------------
 
   useEffect(() => {
@@ -54,9 +45,8 @@ export default function App(props) {
   // }, []);
 
   const logout = function (e) {
-    
     // e.preventDefault();
-    axios.post("/api/logout", {currentUser}).then((rows) => {
+    axios.post("/api/logout", { currentUser }).then((rows) => {
       //currentUser = null;
       window.location.reload();
     });
@@ -77,25 +67,15 @@ export default function App(props) {
               <Link to="/home">Home</Link>
               <Link to="/createquestion">Ask a Question?</Link>
               <Link to="/category">Categories</Link>
-              <form>
-        <input
-          className="search"
-          name="search"
-          type="search"
-          placeholder="search question by Text"
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <button type="submit" onClick={search}>
-          Search
-        </button>
-      </form>
+              <Link to="/search">Search</Link>
+
               <Link to="/questions">Questions</Link>
               <Link to="/update">Update</Link>
               <p style={{ color: "white" }}>
                 Welcome : {currentUser.first_name}!
               </p>
               <Link to="/login" onClick={logout}>
-                  Log Out   
+                Log Out
               </Link>
             </nav>
           </section>
@@ -116,13 +96,7 @@ export default function App(props) {
             />
             <Route
               path="/search"
-              element={
-                <Search
-                  currentUser={currentUser}
-                  question={searchquestion.question_text}
-                  option={searchquestion.option_text}
-                />
-              }
+              element={<Search currentUser={currentUser} />}
             />
             <Route
               path="/questions"

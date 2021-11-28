@@ -8,7 +8,8 @@ export default function Home(props) {
   const parsedQuestions = questions.map(question => (<HomeItem
   key={question.id}
   question={question.question_text}
-  option={question.option_text} />
+  option={question.option_text}
+  handle={question.handle} />
   ));
 
   return (

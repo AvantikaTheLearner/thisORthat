@@ -111,8 +111,10 @@ module.exports = (db) => {
 
   const getQuestionsWithAnswers = () => {
     const query = {
-      text: `SELECT questions.user_id, questions.id as question_id, questions.question_text, options.option_text
-      FROM questions
+      text: `SELECT users.handle, questions.user_id, questions.id as question_id, questions.question_text, options.option_text
+      FROM users
+      INNER JOIN questions
+      ON users.id = questions.user_id
       INNER JOIN options
       ON questions.id = options.question_id`,
     };
@@ -124,8 +126,10 @@ module.exports = (db) => {
   };
   const getQuestionsWithAnswersforUser = (userId) => {
     const query = {
-      text: `SELECT questions.user_id, questions.id as question_id, questions.question_text, options.option_text
-      FROM questions
+      text: `SELECT users.handle, questions.user_id, questions.id as question_id, questions.question_text, options.option_text
+      FROM users
+      INNER JOIN questions
+      ON users.id = questions.user_id
       INNER JOIN options
       ON questions.id = options.question_id
       WHERE questions.user_id = $1`,

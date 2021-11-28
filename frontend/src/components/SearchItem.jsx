@@ -1,5 +1,5 @@
-export default function HomeItem(props) {
-  return (
+export default function SearchItem(props) {
+  return(
     <div>
     <article className="all-tweets">
     <header className="tweetHeader">
@@ -8,7 +8,7 @@ export default function HomeItem(props) {
         <p>{props.question}</p>
       </div>
       <div className="handleName">
-        <span>@{props.handle}</span>
+        <span>@</span>
       </div>
     </header>
     <div className="tweetContent">
@@ -20,5 +20,6 @@ export default function HomeItem(props) {
     </footer>
   </article>
   </div>
-  )
+  
+  );
 }
