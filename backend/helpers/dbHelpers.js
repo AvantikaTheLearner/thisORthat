@@ -123,7 +123,7 @@ module.exports = (db) => {
   };
   const getQuestionsWithAnswersforUser = (userId) => {
     const query = {
-      text: `SELECT questions.id as question_id, questions.question_text, options.option_text
+      text: `SELECT questions.user_id, questions.id as question_id, questions.question_text, options.option_text
       FROM questions
       INNER JOIN options
       ON questions.id = options.question_id
