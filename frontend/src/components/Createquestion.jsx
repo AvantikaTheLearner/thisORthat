@@ -1,7 +1,8 @@
+import "./CreateQuestion.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Createquestion(props) {
+export default function CreateQuestion(props) {
   const {currentUser} = props;
   const [category, setCategory] = useState(4);
   const [question, setQuestion] = useState("");
@@ -40,8 +41,8 @@ export default function Createquestion(props) {
           />
         </div>
         <div>
-          <label for="category">Category</label>
-          <select name="category" onChange={(e) => setCategory(e.target.value)}>
+          <label for="category" className="createquestion-text0">Category</label>
+          <select name="category" className="createquestion-image4" onChange={(e) => setCategory(e.target.value)}>
             <option value="1">Movies</option>
             <option value="2">Music</option>
             <option value="3">Books</option>
