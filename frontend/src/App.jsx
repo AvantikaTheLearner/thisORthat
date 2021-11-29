@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
+import React from "react";
 import "./App.scss";
 import Questions from "./components/Questions";
 import Home from "./components/Home";
 import CreateQuestion from "./components/CreateQuestion";
 import Categories from "./components/Categories";
 import Search from "./components/Search";
-import Updateprofile from "./components/Updateprofile";
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 import axios from "axios";
 import Login from "./Login";
+import { AuthStatus, RequireAuth } from "./RequireAuth";
+import { AuthProvider } from "./AuthProvider";
 
 export default function App(props) {
   let { currentUser } = props;
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [options, setOptions] = useState([]);
-
-  //----------------------------------------------------------
-
-  //----------------------------------------------------------
 
   useEffect(() => {
     axios.get("/api/categories").then((rows) => {
@@ -54,65 +52,94 @@ export default function App(props) {
 
   return (
     <>
-      <div className="App">
-        <main className="layout">
-          <section className="sidebar">
-            <img
-              className="sidebar--centered"
-              src="/android-chrome-192x192.png"
-              alt="this OR that?"
-            />
-            <hr className="sidebar__separator" />
-            <nav className="sidebar__menu">
-              <Link to="/home">Home</Link>
-              <Link to="/createquestion">Ask a Question?</Link>
-              <Link to="/category">Categories</Link>
-              <Link to="/search">Search</Link>
-
-              <Link to="/questions">Questions</Link>
-              <Link to="/update">Update</Link>
-              <p style={{ color: "white" }}>
+      <AuthProvider>
+        <BrowserRouter>
+          <div className="App">
+            <main className="layout">
+              <section className="sidebar">
+                <img
+                  className="sidebar--centered"
+                  src="/android-chrome-192x192.png"
+                  alt="this OR that?"
+                />
+                <hr className="sidebar__separator" />
+                <nav className="sidebar__menu">
+                  <Link to="/home">Home</Link>
+                  <Link to="/createquestion">Ask a Question?</Link>
+                  <Link to="/category">Categories</Link>
+                  <Link to="/search">Search</Link>
+                  <Link to="/questions">Questions</Link>
+                  <Link to="/login">Log In</Link>
+                  {/* <Link to="/update">Update</Link>
+                    <p style={{ color: "white" }}>
                 Welcome : {currentUser.first_name}!
               </p>
-              <Link to="/login" onClick={logout}>
-                Log Out
-              </Link>
-            </nav>
-          </section>
-          <Routes>
-            <Route
-              path="/home"
-              element={<Home currentUser={currentUser} questions={questions} />}
-            />
-            <Route
-              path="/createquestion"
-              element={<CreateQuestion currentUser={currentUser} />}
-            />
-            <Route
-              path="/category"
-              element={
-                <Categories currentUser={currentUser} categories={categories} />
-              }
-            />
-            <Route
-              path="/search"
-              element={<Search currentUser={currentUser} />}
-            />
-            <Route
-              path="/questions"
-              element={
-                <Questions currentUser={currentUser} questions={questions} />
-              }
-            />
-            <Route
-              path="/update"
-              element={<Updateprofile currentUser={currentUser} />}
-            />
-            <Route path="/login" element={!currentUser && <Login />} />
-          </Routes>
-          {/* <section className="schedule"></section> */}
-        </main>
-      </div>
+                    <Link to="/login" onClick={logout}>
+                      Log Out
+                    </Link> */}
+                </nav>
+              </section>
+              <Routes>
+                <Route
+                  path="/home"
+                  element={
+                    <RequireAuth>
+                      <Home currentUser={currentUser} questions={questions} />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/createquestion"
+                  element={
+                    <RequireAuth>
+                      <CreateQuestion currentUser={currentUser} />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/category"
+                  element={
+                    <RequireAuth>
+                      <Categories
+                        currentUser={currentUser}
+                        categories={categories}
+                      />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/search"
+                  element={
+                    <RequireAuth>
+                      <Search currentUser={currentUser} />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/questions"
+                  element={
+                    <RequireAuth>
+                      <Questions
+                        currentUser={currentUser}
+                        questions={questions}
+                      />
+                    </RequireAuth>
+                  }
+                />
+                {/* <Route
+                        path="/update"
+                        element={<Updateprofile currentUser={currentUser} />}
+                      /> */}
+                <Route path="/login" element={<Login />} />
+              </Routes>
+
+              <section className="schedule">
+                <AuthStatus />
+              </section>
+            </main>
+          </div>
+        </BrowserRouter>
+      </AuthProvider>
     </>
   );
 }

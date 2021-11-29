@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Login from "./Login";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Link, Route, Navigate } from "react-router-dom";
-import Signup from "./components/Signup";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
