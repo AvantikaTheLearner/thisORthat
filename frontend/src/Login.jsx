@@ -59,13 +59,10 @@ export default function Login() {
                 </button>
               </div>
               <div className="desktop12-secondary-button32">
-                <button
-                  type="submit"
-                  className="desktop12-text3"
-                  onClick={() => <Navigate to="/signup" />}
-                >
+              <Link to="/signup"><button
+                  className="desktop12-text3">
                   CREATE ACCOUNT
-                </button>
+                </button></Link>
                 <Routes>
                   <Route path="/signup" element={<Signup />} />
                 </Routes>

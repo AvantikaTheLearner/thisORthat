@@ -6,12 +6,12 @@ import CreateQuestion from "./components/CreateQuestion";
 import Categories from "./components/Categories";
 import Search from "./components/Search";
 import Updateprofile from "./components/Updateprofile";
-import { Routes, Route, Link,useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "./Login";
 
 export default function App(props) {
-  let { currentUser, setCurrentUser} = props;
+  const { currentUser, setCurrentUser} = props;
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [options, setOptions] = useState([]);
@@ -68,13 +68,13 @@ export default function App(props) {
             />
             <hr className="sidebar__separator" />
             <nav className="sidebar__menu">
-              <Link to="/home">Home</Link>
-              <Link to="/createquestion">Ask a Question?</Link>
-              <Link to="/category">Categories</Link>
-              <Link to="/search">Search</Link>
+              <Link to="/home"><button>Home</button></Link>
+              <Link to="/createquestion"><button>Ask a Question?</button></Link>
+              <Link to="/category"><button>Categories</button></Link>
+              <Link to="/search"><button>Search</button></Link>
 
-              <Link to="/questions">Questions</Link>
-              <Link to="/update">Update</Link>
+              <Link to="/questions"><button>Questions</button></Link>
+              <Link to="/update"><button>Update</button></Link>
               <p style={{ color: "white" }}>
                 Welcome : {currentUser.first_name}!
               </p>
