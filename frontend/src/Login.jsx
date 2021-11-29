@@ -74,7 +74,7 @@ export default function Login() {
           </div>
         )}
       </div>
-      {currentUser && <App currentUser={currentUser.user} />}
+      {currentUser && <App currentUser={currentUser.user} setCurrentUser={setCurrentUser} />}
     </BrowserRouter>
   );
 }

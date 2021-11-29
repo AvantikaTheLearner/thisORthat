@@ -40,6 +40,7 @@ app.use('/api/signup', signupRouter(dbHelpers));
 
 app.post("/api/logout", (req,res) => {
   req.session = null;
+  res.status(200).json("User is logged out");
 });
 
 

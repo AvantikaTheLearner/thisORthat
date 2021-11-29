@@ -6,12 +6,12 @@ import CreateQuestion from "./components/CreateQuestion";
 import Categories from "./components/Categories";
 import Search from "./components/Search";
 import Updateprofile from "./components/Updateprofile";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "./Login";
 
 export default function App(props) {
-  let { currentUser } = props;
+  let { currentUser, setCurrentUser} = props;
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [options, setOptions] = useState([]);
@@ -44,11 +44,15 @@ export default function App(props) {
   //   });
   // }, []);
 
-  const logout = function (e) {
-    // e.preventDefault();
+  const navigate = useNavigate();
+
+  const logout = function () {
+    setCurrentUser(null);
+    //navigate('/login');
     axios.post("/api/logout", { currentUser }).then((rows) => {
-      //currentUser = null;
-      window.location.reload();
+    })
+    .catch((err) => {
+      console.log("error", err.message);
     });
   };
 
@@ -74,9 +78,9 @@ export default function App(props) {
               <p style={{ color: "white" }}>
                 Welcome : {currentUser.first_name}!
               </p>
-              <Link to="/login" onClick={logout}>
+              <Link to="/login"><button onClick={logout}>
                 Log Out
-              </Link>
+              </button></Link>
             </nav>
           </section>
           <Routes>
