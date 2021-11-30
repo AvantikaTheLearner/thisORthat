@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import CategoryItem from "./CategoryItem";
 
@@ -13,24 +13,23 @@ export default function Categories(props) {
   const addNewCategory = function (e) {
     e.preventDefault();
     axios.post("/api/categories/new", { category }).then((row) => {
-      setCategories((prev) => ({
+      setCategories((prev) => ([
         ...prev,
-        id: row.data.id,
-        name: row.data.name,
-      }));
+        row.data
+      ]));
     });
   };
 
   return (
     <>
-      <div>{parsedCategories}</div>
-      <form>
+      <form onSubmit={addNewCategory}>
         <input name="category" onChange={(e) => setCategory(e.target.value)} />
 
-        <button type="submit" onClick={addNewCategory}>
+        <button type="submit">
           Add new
         </button>
       </form>
+      <div>{parsedCategories}</div>
     </>
   );
 }
