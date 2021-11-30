@@ -1,6 +1,7 @@
 import "./CreateQuestion.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateQuestion(props) {
   const {currentUser} = props;
@@ -8,13 +9,16 @@ export default function CreateQuestion(props) {
   const [question, setQuestion] = useState("");
   const [option, setOption] = useState("");
 
+  const navigate = useNavigate();
+
   const newQuestion = function(e) {
     e.preventDefault();
     axios
-      .post("/api/questions/new", { question, option, category, currentUser })
-      .then((rows) => {
-        setQuestion(rows.data);
-      });
+    .post("/api/questions/new", { question, option, category, currentUser })
+    .then((rows) => {
+      setQuestion(rows.data);
+    });
+    navigate('/questions');
   };
 
   return (
@@ -61,6 +65,7 @@ export default function CreateQuestion(props) {
           </button>
         </div>
       </form>
+      
     </div>
   );
 }
