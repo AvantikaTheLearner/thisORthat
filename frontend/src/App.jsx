@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.scss";
 import Questions from "./components/Questions";
 import Home from "./components/Home";
-import Createquestion from "./components/Createquestion";
+import CreateQuestion from "./components/CreateQuestion";
 import Categories from "./components/Categories";
 import Search from "./components/Search";
 import Updateprofile from "./components/Updateprofile";
@@ -83,7 +83,7 @@ export default function App(props) {
             />
             <Route
               path="/createquestion"
-              element={<Createquestion currentUser={currentUser} />}
+              element={<CreateQuestion currentUser={currentUser} />}
             />
             <Route
               path="/categories"
