@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.scss";
 import Questions from "./components/Questions";
 import Home from "./components/Home";
-import CreateQuestion from "./components/CreateQuestion";
+import Createquestion from "./components/Createquestion";
 import Categories from "./components/Categories";
 import Search from "./components/Search";
 import Updateprofile from "./components/Updateprofile";
@@ -36,7 +36,6 @@ export default function App(props) {
       console.log("setUserQuestions", rows.data);
     });
   }, []);
-
   
   const navigate = useNavigate();
 
@@ -84,7 +83,7 @@ export default function App(props) {
             />
             <Route
               path="/createquestion"
-              element={<CreateQuestion currentUser={currentUser} />}
+              element={<Createquestion currentUser={currentUser} />}
             />
             <Route
               path="/categories"

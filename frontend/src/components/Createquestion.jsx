@@ -1,8 +1,8 @@
-import "./CreateQuestion.css";
+import "./Createquestion.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function CreateQuestion(props) {
+export default function Createquestion(props) {
   const {currentUser} = props;
   const [category, setCategory] = useState(4);
   const [question, setQuestion] = useState("");
