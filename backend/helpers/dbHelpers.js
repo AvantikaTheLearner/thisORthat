@@ -61,9 +61,7 @@ module.exports = (db) => {
     const data = ['%' + title + '%'];
     const query = {
       text: `SELECT * FROM questions
-      INNER JOIN options
-      ON questions.id = options.question_id
-      WHERE questions.question_text LIKE $1` ,
+      WHERE question_text LIKE $1` ,
       values: data
     };
 
@@ -74,11 +72,9 @@ module.exports = (db) => {
 
   const getUsersQuestions = (id) => {
     const query = {
-      text: `SELECT users.id as user_id, questions.question_text
-    FROM users
-    INNER JOIN questions
-    ON users.id = questions.user_id
-    WHERE users.id = ${id}`
+      text: `SELECT * FROM questions
+    WHERE user_id = $1` ,
+      values: [id]
     };
 
     return db.query(query)

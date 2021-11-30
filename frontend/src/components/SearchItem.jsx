@@ -1,25 +1,24 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import SearchOptionsItem from "./SearchOptionsItem";
+
 export default function SearchItem(props) {
+
+  const { question } = props;
+  const [options, setOptions] = useState([]);
+  console.log("props", props.question);
+
+  const questionId = question.id;
+
+  useEffect(() => {
+    axios.post("/api/questions/withOptions", { questionId }).then((rows) => {
+      setOptions(rows.data);
+    });
+  }, []);
+
   return(
     <div>
-    <article className="all-tweets">
-    <header className="tweetHeader">
-      <div className="imageclassName">
-        <span><i className="fas fa-question-circle"></i></span>
-        <p>{props.question}</p>
-      </div>
-      <div className="handleName">
-        <span>@</span>
-      </div>
-    </header>
-    <div className="tweetContent">
-      <input type="radio" name="option" value={props.option} />
-      <p>{props.option}</p>
+    {question && <SearchOptionsItem options={options} question={question.question_text} /> }
     </div>
-    <footer className="tweetFooter">
-      {/* <span>${timeago.format(tweetObj.created_at)}</span> */}
-    </footer>
-  </article>
-  </div>
-  
   );
 }
