@@ -1,6 +1,6 @@
-import "./QuestionOptionsItem.css";
+import "./SearchOptionsItem.css";
 
-export default function QuestionOptionsItem(props) {
+export default function SearchOptionsItem(props) {
   const {options, question } = props;
 
   return (

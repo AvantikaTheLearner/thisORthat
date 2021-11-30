@@ -28,10 +28,7 @@ export default function Search(props) {
           Search
         </button>
       </form>
-      {searchquestion && <SearchItem question={searchquestion.question_text} option={searchquestion.option_text} /> }
+      {searchquestion && <SearchItem question={searchquestion} /> }
     </div>
-  );
-  // 
-  //                 
-  //                 
+  );             
 }

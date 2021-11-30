@@ -14,6 +14,7 @@ export default function App(props) {
   const { currentUser, setCurrentUser} = props;
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
+  const [userquestions, setUserQuestions] = useState([]);
 
 
   useEffect(() => {
@@ -28,12 +29,14 @@ export default function App(props) {
     });
   }, []);
 
+
   useEffect(() => {
-    axios.post("/api/questions/withanswers", { currentUser }).then((rows) => {
-      setQuestions(rows.data);
+    axios.post("/api/questions/forUser", { currentUser }).then((rows) => {
+      setUserQuestions(rows.data);
+      console.log("setUserQuestions", rows.data);
     });
   }, []);
-
+  
   const navigate = useNavigate();
 
   const logout = function () {
@@ -76,7 +79,7 @@ export default function App(props) {
           <Routes>
             <Route
               path="/home"
-              element={<Home currentUser={currentUser} questions={questions} />}
+              element={<Home currentUser={currentUser} questions={userquestions} />}
             />
             <Route
               path="/createquestion"

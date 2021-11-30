@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./QuestionItem.css";
 import QuestionOptionsItem from "./QuestionOptionsItem";
 
 export default function QuestionItem(props) {
