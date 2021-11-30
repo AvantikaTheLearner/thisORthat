@@ -11,10 +11,11 @@ module.exports = ({getCategories, addNewCategory}) => {
   });
 
   router.post('/new', function(req, res, next) {
-    const { category } = req.body.newcategory;
+    const category = req.body.category;
+    
     addNewCategory(category)
-      .then((category) => {
-        res.json(category);
+      .then((categories) => {
+        res.json(categories);
       })
       .catch((err) => res.json({
         error: err.message

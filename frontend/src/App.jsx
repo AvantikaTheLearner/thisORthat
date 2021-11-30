@@ -14,20 +14,16 @@ export default function App(props) {
   const { currentUser, setCurrentUser} = props;
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
-  const [options, setOptions] = useState([]);
 
-  //----------------------------------------------------------
-
-  //----------------------------------------------------------
 
   useEffect(() => {
     axios.get("/api/categories").then((rows) => {
-      setCategories([...rows.data]);
+      setCategories(rows.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get("/api/questions/withanswers").then((rows) => {
+    axios.get("/api/questions").then((rows) => {
       setQuestions(rows.data);
     });
   }, []);
@@ -37,13 +33,7 @@ export default function App(props) {
       setQuestions(rows.data);
     });
   }, []);
-
-  // useEffect(() => {
-  //   axios.get("/api/options").then((rows) => {
-  //     setOptions(rows.data);
-  //   });
-  // }, []);
-
+  
   const navigate = useNavigate();
 
   const logout = function () {
@@ -70,7 +60,7 @@ export default function App(props) {
             <nav className="sidebar__menu">
               <Link to="/home"><button>Home</button></Link>
               <Link to="/createquestion"><button>Ask a Question?</button></Link>
-              <Link to="/category"><button>Categories</button></Link>
+              <Link to="/categories"><button>Categories</button></Link>
               <Link to="/search"><button>Search</button></Link>
 
               <Link to="/questions"><button>Questions</button></Link>
@@ -93,9 +83,9 @@ export default function App(props) {
               element={<CreateQuestion currentUser={currentUser} />}
             />
             <Route
-              path="/category"
+              path="/categories"
               element={
-                <Categories currentUser={currentUser} categories={categories} />
+                <Categories currentUser={currentUser} categories={categories} setCategories={setCategories} />
               }
             />
             <Route

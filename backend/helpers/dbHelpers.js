@@ -53,7 +53,7 @@ module.exports = (db) => {
     };
 
     return db.query(query)
-      .then(result => result.rows)
+      .then(result => result.rows[0])
       .catch(err => err);
   };
 
@@ -109,21 +109,20 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const getQuestionsWithAnswers = () => {
+  const getOptionsForQuestion = (questionID) => {
     const query = {
-      text: `SELECT users.handle, questions.user_id, questions.id as question_id, questions.question_text, options.option_text
-      FROM users
-      INNER JOIN questions
-      ON users.id = questions.user_id
-      INNER JOIN options
-      ON questions.id = options.question_id`,
+      text: `SELECT *
+      FROM options
+      WHERE question_id = $1`,
+      values: [questionID]
     };
-
     return db
       .query(query)
       .then((result) => result.rows)
       .catch((err) => err);
   };
+
+  
   const getQuestionsWithAnswersforUser = (userId) => {
     const query = {
       text: `SELECT users.handle, questions.user_id, questions.id as question_id, questions.question_text, options.option_text
@@ -158,7 +157,7 @@ module.exports = (db) => {
     addUser,
     addQuestion,
     addNewCategory,
-    getQuestionsWithAnswers,
+    getOptionsForQuestion,
     getUsersQuestions,
     getCategories,
     getOptions,
