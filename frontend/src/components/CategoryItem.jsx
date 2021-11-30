@@ -1,8 +1,10 @@
 export default function CategoryItem(props) {
-  const {name} = props;
+  const { name } = props;
   return (
     <div>
-    <p>{name}</p>
+      <ul>
+        <li>{name}</li>
+      </ul>
     </div>
   );
 }
