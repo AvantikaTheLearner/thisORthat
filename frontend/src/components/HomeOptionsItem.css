@@ -38,6 +38,10 @@
   margin: 10px 15px;
   justify-content: space-between;
 }
+.submitButton {
+  background-color: #4056A1;
+  color: white;
+}
 
 .iconsClass {
   display: flex;

@@ -26,6 +26,7 @@ export default function HomeOptionsItem(props) {
     </div>
     <footer className="tweetFooter">
       {/* <span>${timeago.format(tweetObj.created_at)}</span> */}
+      <button class="submitButton"type="submit">Delete</button>
     </footer>
   </article>
   </div>
