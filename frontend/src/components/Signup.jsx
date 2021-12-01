@@ -24,7 +24,7 @@ export default function Signup() {
   };
 
   return (
-    <div>
+    <>
       {!currentUser && (
         <div className="desktop13">
           <img
@@ -76,14 +76,11 @@ export default function Signup() {
               >
                 CREATE
               </button>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-              </Routes>
             </div>
           </form>
         </div>
       )}
       {/* {currentUser && <App currentUser={currentUser.user} setCurrentUser={setCurrentUser} />} */}
-    </div>
+    </>
   );
 }

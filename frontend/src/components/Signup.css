@@ -9,8 +9,8 @@
   background-color: rgba(255, 255, 255, 1);
 }
 .desktop13-image {
-  top: -83px;
-  left: -369px;
+  top: -192px;
+  left: -662px;
   width: 1809px;
   height: 1066px;
   position: absolute;
@@ -18,8 +18,8 @@
   border-color: transparent;
 }
 .desktop13-image1 {
-  top: 175px;
-  left: 520px;
+  top: -30px;
+  left: -150px;
   width: 400px;
   height: 500px;
   position: absolute;
@@ -31,8 +31,8 @@
   background-color: rgba(255, 255, 255, 0.20000000298023224);
 }
 .desktop13-input-firstname {
-  top: 221px;
-  left: 560px;
+  top: 16px;
+  left: -110px;
   width: 320px;
   height: 50px;
   position: absolute;
@@ -44,8 +44,8 @@
   background-color: rgba(255, 255, 255, 0.20000000298023224);
 }
 .desktop13-input-lastname {
-  top: 321px;
-  left: 560px;
+  top: 116px;
+  left: -110px;
   width: 320px;
   height: 50px;
   position: absolute;
@@ -57,8 +57,8 @@
   background-color: rgba(255, 255, 255, 0.20000000298023224);
 }
 .desktop13-input-email {
-  top: 421px;
-  left: 560px;
+  top: 216px;
+  left: -110px;
   width: 320px;
   height: 50px;
   position: absolute;
@@ -70,8 +70,8 @@
   background-color: rgba(255, 255, 255, 0.20000000298023224);
 }
 .desktop13-input-password {
-  top: 521px;
-  left: 560px;
+  top: 316px;
+  left: -110px;
   width: 320px;
   height: 50px;
   position: absolute;
@@ -90,8 +90,8 @@
   position: absolute;
 }
 .desktop13-email {
-  top: 395px;
-  left: 560px;
+  top: 190px;
+  left: -110px;
   color: rgba(255, 255, 255, 1);
   width: auto;
   height: auto;
@@ -106,8 +106,8 @@
   font-stretch: normal;
 }
 .desktop13-lastname {
-  top: 295px;
-  left: 560px;
+  top: 90px;
+  left: -110px;
   color: rgba(255, 255, 255, 1);
   width: auto;
   height: auto;
@@ -122,8 +122,8 @@
   font-stretch: normal;
 }
 .desktop13-firstname {
-  top: 195px;
-  left: 560px;
+  top: -10px;
+  left: -110px;
   color: rgba(255, 255, 255, 1);
   width: auto;
   height: auto;
@@ -138,8 +138,8 @@
   font-stretch: normal;
 }
 .desktop13-password {
-  top: 495px;
-  left: 560px;
+  top: 290px;
+  left: -110px;
   color: rgba(255, 255, 255, 1);
   width: auto;
   height: auto;
@@ -183,8 +183,8 @@
   font-stretch: normal;
 }
 .desktop13-secondary-button32 {
-  top: 621px;
-  left: 630px;
+  top: 416px;
+  left: -40px;
   width: 180px;
   height: 40px;
   display: flex;
