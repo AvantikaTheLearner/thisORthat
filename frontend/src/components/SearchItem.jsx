@@ -14,11 +14,11 @@ export default function SearchItem(props) {
     axios.post("/api/questions/withOptions", { questionId }).then((rows) => {
       setOptions(rows.data);
     });
-  }, []);
+  }, [questionId]);
 
   return(
     <div>
-    {question && <SearchOptionsItem options={options} question={question.question_text} /> }
+    {question && <SearchOptionsItem options={options} question={question.question_text} handle={question.handle} /> }
     </div>
   );
 }

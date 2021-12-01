@@ -8,7 +8,8 @@ export default function Myquestions(props) {
   const parsedQuestions = questions.map(question => (<QuestionItem
   key={question.id}
   questionId={question.id}
-  question={question.question_text} />
+  question={question.question_text}
+  handle={question.handle} />
   ));
 
   return (

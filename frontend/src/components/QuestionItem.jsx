@@ -3,7 +3,7 @@ import axios from "axios";
 import QuestionOptionsItem from "./QuestionOptionsItem";
 
 export default function QuestionItem(props) {
-  const { questionId, question} = props;
+  const { questionId, question, handle } = props;
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,6 @@ export default function QuestionItem(props) {
 
 
   return (
-    <QuestionOptionsItem options={options} question={question}/>
+    <QuestionOptionsItem options={options} question={question} handle={handle} />
   )
 }

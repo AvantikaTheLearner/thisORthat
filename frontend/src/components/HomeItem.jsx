@@ -3,7 +3,7 @@ import axios from "axios";
 import HomeOptionsItem from "./HomeOptionsItem";
 
 export default function HomeItem(props) {
-  const { questionId, question} = props;
+  const { questionId, question, handle } = props;
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,6 @@ export default function HomeItem(props) {
 
 
   return (
-    <HomeOptionsItem options={options} question={question}/>
+    <HomeOptionsItem options={options} question={question} handle={handle} />
   )
 }

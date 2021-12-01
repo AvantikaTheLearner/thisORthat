@@ -24,7 +24,7 @@ export default function App(props) {
   }, []);
 
   useEffect(() => {
-    axios.get("/api/questions").then((rows) => {
+    axios.get("/api/questions/withhandle").then((rows) => {
       setQuestions(rows.data);
     });
   }, []);

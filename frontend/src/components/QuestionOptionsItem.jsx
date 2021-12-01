@@ -1,7 +1,7 @@
 import "./QuestionOptionsItem.css";
 
 export default function QuestionOptionsItem(props) {
-  const {options, question } = props;
+  const {options, question, handle } = props;
 
   return (
     <div>
@@ -12,7 +12,7 @@ export default function QuestionOptionsItem(props) {
         <span>{question}</span>
       </div>
       <div className="handleName">
-        {/* <span>@{props.handle}</span> */}
+        <span>@{props.handle}</span>
       </div>
     </header>
     <div className="tweetContent">

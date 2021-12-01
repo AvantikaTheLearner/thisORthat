@@ -1,9 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQuestion }) => {
+module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQuestion, getQuestionsWithHandle }) => {
   router.get('/', function(req, res, next) {
     getQuestions()
+      .then((questions) => res.json(questions))
+      .catch((err) => res.json({
+        error: err.message
+      }));
+  });
+
+  router.get('/withhandle', function(req, res, next) {
+    getQuestionsWithHandle()
       .then((questions) => res.json(questions))
       .catch((err) => res.json({
         error: err.message

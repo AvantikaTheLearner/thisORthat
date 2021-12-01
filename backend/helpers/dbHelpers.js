@@ -60,7 +60,8 @@ module.exports = (db) => {
   const searchQuestionByText = (title) => {
     const data = ['%' + title + '%'];
     const query = {
-      text: `SELECT * FROM questions
+      text: `SELECT users.handle, questions.* FROM questions
+      INNER JOIN users ON users.id = questions.user_id
       WHERE question_text LIKE $1` ,
       values: data
     };
@@ -72,7 +73,8 @@ module.exports = (db) => {
 
   const getUsersQuestions = (id) => {
     const query = {
-      text: `SELECT * FROM questions
+      text: `SELECT users.handle, questions.* FROM questions
+      INNER JOIN users ON users.id = questions.user_id
     WHERE user_id = $1` ,
       values: [id]
     };
@@ -147,6 +149,19 @@ module.exports = (db) => {
       .then((result) => result.rows)
       .catch((err) => err);
   };
+
+  const getQuestionsWithHandle = () => {
+    const query = {
+      text: 'SELECT users.handle, questions.* FROM questions INNER JOIN users ON users.id=questions.user_id',
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+
   return {
     getUsers,
     getUserByEmail,
@@ -159,6 +174,7 @@ module.exports = (db) => {
     getOptions,
     getQuestions,
     searchQuestionByText,
+    getQuestionsWithHandle,
     getQuestionsWithAnswersforUser
   };
 };
