@@ -68,9 +68,9 @@ export default function App(props) {
 
               <Link to="/questions"><button>Questions</button></Link>
               <Link to="/update"><button>Update</button></Link>
-              <p style={{ color: "white" }}>
-                Welcome : {currentUser.first_name}!
-              </p>
+              <span style={{ color: "white" }}>
+                Welcome : @{currentUser.handle}!
+              </span>
               <Link to="/login"><button onClick={logout}>
                 Log Out
               </button></Link>
