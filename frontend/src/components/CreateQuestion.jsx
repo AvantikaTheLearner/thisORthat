@@ -4,21 +4,21 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateQuestion(props) {
-  const {currentUser} = props;
+  const { currentUser, categories } = props;
   const [category, setCategory] = useState(4);
   const [question, setQuestion] = useState("");
   const [option, setOption] = useState("");
 
   const navigate = useNavigate();
 
-  const newQuestion = function(e) {
+  const newQuestion = function (e) {
     e.preventDefault();
     axios
-    .post("/api/questions/new", { question, option, category, currentUser })
-    .then((rows) => {
-      setQuestion(rows.data);
-    });
-    navigate('/questions');
+      .post("/api/questions/new", { question, option, category, currentUser })
+      .then((rows) => {
+        setQuestion(rows.data);
+      });
+    navigate("/questions");
   };
 
   return (
@@ -55,27 +55,29 @@ export default function CreateQuestion(props) {
           />
         </div>
         <div>
-          <label for="category" className="createquestion-text0">Category</label>
-          <select name="category" className="createquestion-image4" onChange={(e) => setCategory(e.target.value)}>
-            <option value="1">Movies</option>
-            <option value="2">Music</option>
-            <option value="3">Books</option>
-            <option value="4" selected>
-              Fashion
-            </option>
-            <option value="5">Health</option>
-            <option value="6">General Knowledge</option>
-            <option value="7">Education</option>
-            <option value="8">News</option>
+          <label for="category" className="createquestion-text0">
+            Category
+          </label>
+          <select
+            name="category"
+            className="createquestion-image4"
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            {categories.map(function (category, id) {
+              return <option key={id}>{category.name}</option>;
+            })}
           </select>
         </div>
         <div className="createquestion-primary-button26">
-          <button type="submit" className="createquestion-text2" onClick={newQuestion}>
+          <button
+            type="submit"
+            className="createquestion-text2"
+            onClick={newQuestion}
+          >
             Submit
           </button>
         </div>
       </form>
-      
     </div>
   );
 }

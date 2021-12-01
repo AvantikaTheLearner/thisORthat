@@ -83,7 +83,7 @@ export default function App(props) {
             />
             <Route
               path="/createquestion"
-              element={<CreateQuestion currentUser={currentUser} />}
+              element={<CreateQuestion currentUser={currentUser} categories={categories}/>}
             />
             <Route
               path="/categories"
