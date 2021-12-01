@@ -67,7 +67,7 @@ export default function App(props) {
               <Link to="/search"><button>Search</button></Link>
 
               <Link to="/questions"><button>Questions</button></Link>
-              <Link to="/update"><button>Update</button></Link>
+              {/* <Link to="/update"><button>Update</button></Link> */}
               <span style={{ color: "white" }}>
                 Welcome : @{currentUser.handle}!
               </span>
