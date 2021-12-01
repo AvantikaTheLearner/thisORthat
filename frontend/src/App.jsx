@@ -63,10 +63,10 @@ export default function App(props) {
             <nav className="sidebar__menu">
               <Link to="/home"><button>Home</button></Link>
               <Link to="/createquestion"><button>Ask a Question?</button></Link>
-              <Link to="/categories"><button>Categories</button></Link>
-              <Link to="/search"><button>Search</button></Link>
-
               <Link to="/questions"><button>Questions</button></Link>
+              <Link to="/search"><button>Search</button></Link>
+              <Link to="/categories"><button>Categories</button></Link>
+
               {/* <Link to="/update"><button>Update</button></Link> */}
               <span style={{ color: "white" }}>
                 Welcome : @{currentUser.handle}!
