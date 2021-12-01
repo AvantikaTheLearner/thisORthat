@@ -35,13 +35,23 @@ export default function CreateQuestion(props) {
           />
         </div>
         <div>
-          <label className="createquestion-text1">Option</label>
+          <label className="createquestion-text1">First Option</label>
           <input
             alt="Input17"
             name="option"
             type="question"
             onChange={(e) => setOption(e.target.value)}
             className="createquestion-image3"
+          />
+        </div>
+        <div>
+          <label className="createquestion-text5">Second Option</label>
+          <input
+            alt="Input17"
+            name="option"
+            type="question"
+            onChange={(e) => setOption(e.target.value)}
+            className="createquestion-image5"
           />
         </div>
         <div>
