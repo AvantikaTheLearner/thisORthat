@@ -13,9 +13,9 @@ export default function Search(props) {
       console.log("setSearchQuestion", rows.data);
     });
   };
-  
+
   return (
-    <div>
+    <div class="search-container">
       <form>
         <input
           className="search"
@@ -30,5 +30,5 @@ export default function Search(props) {
       </form>
       {searchquestion && <SearchItem question={searchquestion} /> }
     </div>
-  );             
+  );
 }

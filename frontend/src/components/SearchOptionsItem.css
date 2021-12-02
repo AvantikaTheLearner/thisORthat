@@ -1,14 +1,18 @@
 .all-tweets {
   display: flex;
   flex-direction: column;
-  border: 5px solid grey;
-  margin-top: 25px;
-  width: 800px;
+  border: 3px solid grey;
+  border-radius: 15px;
+  margin-top: 0.8em;
+  margin-left: auto;
+  margin-right: auto;
+  background: #c2e8fa;
+  width: 400px;
 }
 
 /*This class is being used when we hover over any tweet */
 .all-tweets:hover {
-  box-shadow: 2px 2px 2px 2px rgb(81, 105, 57);
+  box-shadow: 2px 2px 2px 2px rgb(59, 88, 102);
 }
 
 .tweetHeader {
@@ -43,7 +47,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #4056A1; 
+  color: #4056A1;
 }
 
 /*The below classes are being used when we hover over the icons */
