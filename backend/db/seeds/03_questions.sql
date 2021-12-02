@@ -8,6 +8,6 @@ VALUES
 (5, 8, 'How many covid cases been reported today?'),
 (1, 6, 'What is full form of LHL?'),
 (2, 1, 'Which web series should I watch?'),
-(3, 7, 'Which one should I choose to pursue my career'),
-(4, 3, 'Which book is must to read'),
+(3, 7, 'Which one should I choose to pursue my career?'),
+(4, 3, 'Which book is must to read?'),
 (5, 4, 'Which brand is best for having subtle make-up?');
