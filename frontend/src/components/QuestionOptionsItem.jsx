@@ -1,7 +1,12 @@
+import VISUAL_MODE from "../Constants";
 import "./QuestionOptionsItem.css";
 
 export default function QuestionOptionsItem(props) {
-  const {options, question, handle } = props;
+  const {options, question, handle, setMode } = props;
+
+  const handleAnswer = function (e) {
+    setMode(VISUAL_MODE.ANSWER);
+  };
 
   return (
     <div>
@@ -19,13 +24,15 @@ export default function QuestionOptionsItem(props) {
       {/* <input type="radio" name="option" /> */}
       <ul>
         {options.map(function(option, id) {
-                    return <li key={ id }>{option.option_text} (selected count: {option.selected_count})</li>;
-                  })}
+          return <li key={ id }>{option.option_text} (selected count: {option.selected_count})</li>;
+        })}
       </ul>
       {/* <p>{options[0].option_text}</p>*/}
     </div>
     <footer className="tweetFooter">
       {/* <span>${timeago.format(tweetObj.created_at)}</span> */}
+      <button class="submitButton" onClick={handleAnswer}>Answer</button>
+
     </footer>
   </article>
   </div>

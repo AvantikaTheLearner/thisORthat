@@ -18,6 +18,7 @@ export default function Myquestions(props) {
   questionId={question.id}
   question={question.question_text}
   currentUser={currentUser}
+  setQuestions={setQuestions}
   handle={question.handle} />
   ) : null));
 

@@ -1,6 +1,6 @@
 INSERT INTO badges (name, points)
 VALUES
-('PADEVAN', 1000),
+('YOUNGLING', 1000),
 ('APPRENTICE', 2000),
 ('JEDI MASTER', 5000),
 ('YODA', 10000),
