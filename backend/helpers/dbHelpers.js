@@ -1,5 +1,5 @@
 module.exports = (db) => {
-  
+
   const getUsers = () => {
     const query = {
       text: 'SELECT * FROM users',
@@ -139,7 +139,7 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  
+
   const getQuestionsWithAnswersforUser = (userId) => {
     const query = {
       text: `SELECT users.handle, questions.user_id, questions.id as question_id, questions.question_text, options.option_text
@@ -180,6 +180,90 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const addAnswer = function(answered_by, question_id, selected_option, custom_suggestion) {
+    const query = `INSERT INTO answers (answered_by, question_id, selected_option, custom_suggestion) VALUES ($1, $2, $3, $4) RETURNING *`;
+
+    custom_suggestion = custom_suggestion || "";
+    const queryParams = [answered_by, question_id, selected_option, custom_suggestion];
+    console.log(query);
+    console.log("storing answer: ", { queryParams });
+    return db.query(query, queryParams)
+      .then(result => {
+        const newAnswer = result.rows[0];
+        console.log("new stored answer: ", { newAnswer });
+        return newAnswer;
+      })
+      .catch((err) => {
+        console.log({err});
+        return err
+      });
+  };
+
+  const getAnswersForUser = function(user_id) {
+    const query = `SELECT * FROM answers WHERE question_id IN ( SELECT questions.id FROM questions WHERE questions.user_id = $1 ) ORDER BY question_id ASC ;`
+    const queryParams = [user_id];
+    console.log(query);
+    console.log("params [user_id] : ", { queryParams });
+    return db.query(query, queryParams)
+      .then(result => {
+        const answers = result.rows;
+        console.log("answers for this user: ", answers);
+        return answers;
+      })
+      .catch((err) => {
+        console.log({err});
+        return err
+      });
+  };
+
+  const getAnswersForOtherThanThisUser = function(user_id) {
+    const query = `SELECT * FROM answers WHERE question_id IN ( SELECT questions.id FROM questions WHERE questions.user_id != $1 ) ORDER BY question_id ASC ;`
+    const params = [user_id];
+    console.log(query);
+    console.log("params other than this [user_id] : ", { params });
+    return db.query(query, params)
+      .then(result => {
+        const answers = result.rows;
+        console.log(" answers for other than this user: ", user_id, " answers:", answers);
+        return answers;
+      })
+      .catch((err) => {
+        console.log({err});
+        return err
+      });
+  };
+
+  const getAnswers = function() {
+    const query = `SELECT * FROM answers ORDER BY question_id ASC ;`
+    console.log(query);
+    return db.query(query)
+      .then(result => {
+        const answers = result.rows;
+        console.log("all answers: ", answers);
+        return answers;
+      })
+      .catch((err) => {
+        console.log({err});
+        return err
+      });
+  };
+
+  const getAnswersForQuestion = function(question_id) {
+    const query = `SELECT * FROM answers WHERE question_id = $1 ORDER BY answers.id ASC; ;`
+    const params = [question_id];
+    console.log(query);
+    console.log("params [question_id] : ", { params });
+    return db.query(query, params)
+      .then(result => {
+        const answers = result.rows;
+        console.log("answers for question_id: ", question_id, " answers: ", answers);
+        return answers;
+      })
+      .catch((err) => {
+        console.log({err});
+        return err
+      });
+  };
 
   return {
     getUsers,
@@ -195,6 +279,11 @@ module.exports = (db) => {
     getQuestions,
     searchQuestionByText,
     getQuestionsWithHandle,
-    getQuestionsWithAnswersforUser
+    getQuestionsWithAnswersforUser,
+    addAnswer,
+    getAnswersForUser,
+    getAnswersForOtherThanThisUser,
+    getAnswers,
+    getAnswersForQuestion
   };
 };
