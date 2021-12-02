@@ -7,14 +7,15 @@ export default function CreateQuestion(props) {
   const { currentUser, categories } = props;
   const [category, setCategory] = useState(4);
   const [question, setQuestion] = useState("");
-  const [option, setOption] = useState("");
+  const [firstoption, setFirstOption] = useState("");
+  const [secondoption, setSecondOption] = useState("");
 
   const navigate = useNavigate();
 
   const newQuestion = function (e) {
     e.preventDefault();
     axios
-      .post("/api/questions/new", { question, option, category, currentUser })
+      .post("/api/questions/new", { question, firstoption, secondoption, category, currentUser })
       .then((rows) => {
         setQuestion(rows.data);
       });
@@ -38,9 +39,9 @@ export default function CreateQuestion(props) {
           <label className="createquestion-text1">First Option</label>
           <input
             alt="Input17"
-            name="option"
-            type="question"
-            onChange={(e) => setOption(e.target.value)}
+            name="firstOption"
+            type="text"
+            onChange={(e) => setFirstOption(e.target.value)}
             className="createquestion-image3"
           />
         </div>
@@ -48,9 +49,9 @@ export default function CreateQuestion(props) {
           <label className="createquestion-text5">Second Option</label>
           <input
             alt="Input17"
-            name="option"
-            type="question"
-            onChange={(e) => setOption(e.target.value)}
+            name="secondOption"
+            type="text"
+            onChange={(e) => setSecondOption(e.target.value)}
             className="createquestion-image5"
           />
         </div>
@@ -64,7 +65,7 @@ export default function CreateQuestion(props) {
             onChange={(e) => setCategory(e.target.value)}
           >
             {categories.map(function (category, id) {
-              return <option key={id}>{category.name}</option>;
+              return <option value={id}>{category.name}</option>;
             })}
           </select>
         </div>

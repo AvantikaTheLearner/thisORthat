@@ -42,10 +42,12 @@ module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQ
   //body parser is used to read the values of the form entered in browser accessing through req.body
   router.post('/new', function(req, res, next) {
     const userId = req.body.currentUser.id;
-    const { question, category, option } = req.body;
-    console.log("New req.body", req.body);
-    addQuestion(userId, question, category)
-      .then((question) => res.json(question))
+    const { question, category, firstoption, secondoption } = req.body;
+    addQuestion(userId, question, category, firstoption, secondoption)
+      .then((question) => {
+        res.json(question);
+        console.log("New req.body", question);
+      })
       .catch((err) => res.json({
         error: err.message
       }));

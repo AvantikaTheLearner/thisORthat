@@ -35,14 +35,21 @@ module.exports = (db) => {
       .catch(err => err);
   };
 
-  const addQuestion = (userId, question, category) => {
+  //inserted multiple values in multiple tables using single query in postgresql
+  const addQuestion = (userId, question, category, firstoption, secondoption) => {
     const query = {
-      text: `INSERT INTO questions (user_id, category_id, question_text) VALUES ($1, $2, $3) RETURNING *` ,
-      values: [userId, category, question]
+      text: `WITH ins1 AS (
+        INSERT INTO questions (user_id, category_id, question_text) VALUES ($1, $2, $3) RETURNING id AS question_id),
+        ins2 AS (INSERT INTO options (question_id, option_text)
+        SELECT question_id, $4 FROM ins1)
+        INSERT INTO options (question_id, option_text)
+        SELECT question_id, $5 FROM ins1
+        RETURNING *` ,
+      values: [userId, category, question, firstoption, secondoption]
     };
 
     return db.query(query)
-      .then(result => result.rows[0])
+      .then(result => result.rows)
       .catch(err => err);
   };
 
