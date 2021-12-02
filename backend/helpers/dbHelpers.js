@@ -265,6 +265,18 @@ module.exports = (db) => {
       });
   };
 
+  const populateAnswersInOptions = function(answers, options) {
+    const optionSelections = {};
+    for (const ans of answers) {
+      let count = optionSelections[ans.selected_option] || 0;
+      optionSelections[ans.selected_option] = count + 1;
+    }
+    options.map(option => {
+      option["selected_count"] = optionSelections[option.id] || 0;
+      return option;
+    });
+  }
+
   return {
     getUsers,
     getUserByEmail,
@@ -284,6 +296,7 @@ module.exports = (db) => {
     getAnswersForUser,
     getAnswersForOtherThanThisUser,
     getAnswers,
-    getAnswersForQuestion
+    getAnswersForQuestion,
+    populateAnswersInOptions
   };
 };

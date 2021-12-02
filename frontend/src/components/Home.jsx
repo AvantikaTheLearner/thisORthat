@@ -23,6 +23,6 @@ export default function Home(props) {
   ));
 
   return (
-  <p>{parsedQuestions}</p>
+  <section>{parsedQuestions}</section>
   );
 }

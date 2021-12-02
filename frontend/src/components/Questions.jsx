@@ -11,14 +11,15 @@ export default function Myquestions(props) {
       setQuestions(rows.data);
     });
   }, []);
-  
 
-  const parsedQuestions = questions.map(question => (<QuestionItem
+
+  const parsedQuestions = questions.map(question => (currentUser.id !== question.user_id ? (<QuestionItem
   key={question.id}
   questionId={question.id}
   question={question.question_text}
+  currentUser={currentUser}
   handle={question.handle} />
-  ));
+  ) : null));
 
   return (
   <div>{parsedQuestions}</div>

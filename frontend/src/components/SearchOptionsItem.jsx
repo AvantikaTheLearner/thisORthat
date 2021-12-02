@@ -12,16 +12,16 @@ export default function SearchOptionsItem(props) {
         <span>{question}</span>
       </div>
       <div className="handleName">
-        <span>@{props.handle}</span>
+        <span>@{handle}</span>
       </div>
     </header>
     <div className="tweetContent">
       {/* <input type="radio" name="option" /> */}
       <ul>
-                {options.map(function(option, id){
-                    return <li key={ id }>{option.option_text}</li>;
-                  })}
-            </ul>
+        {options.map(function(option, id) {
+          return <li key={id}>{option.option_text} (selected count: {option.selected_count})</li>;
+        })}
+      </ul>
       {/* <p>{options[0].option_text}</p>*/}
     </div>
     <footer className="tweetFooter">

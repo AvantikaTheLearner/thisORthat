@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQuestion, deleteQuestion, getQuestionsWithHandle }) => {
+module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQuestion, deleteQuestion, getQuestionsWithHandle, getAnswersForQuestion, populateAnswersInOptions }) => {
   router.get('/', function(req, res, next) {
     getQuestions()
       .then((questions) => res.json(questions))
@@ -22,7 +22,17 @@ module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQ
     const questionID = req.body.questionId;
     getOptionsForQuestion(questionID)
       .then((options) => {
-        res.json(options);
+        console.log("options for question: ", questionID, " options", options);
+
+        getAnswersForQuestion(questionID)
+        .then((answers) => {
+          console.log("answers for question:", questionID, " answers: ", answers);
+          populateAnswersInOptions(answers, options);
+
+          console.log("options with answers for question: ", questionID, " options", options);
+          res.json(options);
+        })
+        .catch((err) => err);
       })
       .catch((err) => res.json({
         error: err.message
@@ -66,3 +76,5 @@ module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQ
   });
   return router;
 };
+
+

@@ -19,7 +19,7 @@ export default function CreateQuestion(props) {
       .then((rows) => {
         setQuestion(rows.data);
       });
-    navigate("/questions");
+    navigate("/home");
   };
 
   return (

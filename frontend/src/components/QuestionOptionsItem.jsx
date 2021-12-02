@@ -18,10 +18,10 @@ export default function QuestionOptionsItem(props) {
     <div className="tweetContent">
       {/* <input type="radio" name="option" /> */}
       <ul>
-                {options.map(function(option, id){
-                    return <li key={ id }>{option.option_text}</li>;
+        {options.map(function(option, id) {
+                    return <li key={ id }>{option.option_text} (selected count: {option.selected_count})</li>;
                   })}
-            </ul>
+      </ul>
       {/* <p>{options[0].option_text}</p>*/}
     </div>
     <footer className="tweetFooter">
