@@ -30,6 +30,7 @@ export default function Search(props) {
         </button>
       </form>
       <div className="searchitem">
+        <h2>Searched Results:</h2>
       {searchquestion && <SearchItem question={searchquestion} /> }
       </div>
     </div>
