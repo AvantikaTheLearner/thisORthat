@@ -32,7 +32,7 @@ export default function HomeOptionsItem(props) {
       {/* <input type="radio" name="option" /> */}
       <ul>
                 {options.map(function(option, id) {
-                    return <li key={ id }>{option.option_text} (selected count: {option.selected_count})</li>;
+                    return <li key={ id }>{option.option_text} ({option.selected_count} selects)</li>;
                   })}
             </ul>
       {/* <p>{options[0].option_text}</p>*/}
