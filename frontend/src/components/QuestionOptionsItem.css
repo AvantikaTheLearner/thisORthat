@@ -43,7 +43,22 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #4056A1; 
+  color: #4056A1;
+}
+
+.progress-bar {
+  position: relative;
+  height: 8px;
+  width: 150px;
+  border-radius: 50px;
+  border: 1px solid #333;
+}
+
+.filler {
+  background: #1DA598;
+  height: 100%;
+  border-radius: inherit;
+  transition: width .1s ease-in;
 }
 
 /*The below classes are being used when we hover over the icons */
