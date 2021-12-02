@@ -1,7 +1,20 @@
 import "./HomeOptionsItem.css";
+import axios from "axios";
 
 export default function HomeOptionsItem(props) {
-  const {options, question, handle } = props;
+  const {options, question, questionId, handle, setUserQuestions, currentUser  } = props;
+
+  const deleteQuestion = function (e) {
+    e.preventDefault();
+    axios
+      .post("/api/questions/delete", { questionId })
+      .then((rows) => {
+        axios.post("/api/questions/forUser", { currentUser }).then((rows) => {
+          setUserQuestions(rows.data);
+        });
+      });
+
+  };
 
   return (
     <div>
@@ -12,7 +25,7 @@ export default function HomeOptionsItem(props) {
         <span>{question}</span>
       </div>
       <div className="handleName">
-        <span>@{props.handle}</span>
+        <span>@{handle}</span>
       </div>
     </header>
     <div className="tweetContent">
@@ -26,7 +39,7 @@ export default function HomeOptionsItem(props) {
     </div>
     <footer className="tweetFooter">
       {/* <span>${timeago.format(tweetObj.created_at)}</span> */}
-      <button class="submitButton"type="submit">Delete</button>
+      <button class="submitButton" type="submit" onClick={deleteQuestion}>Delete</button>
     </footer>
   </article>
   </div>

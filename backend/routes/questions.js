@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQuestion, getQuestionsWithHandle }) => {
+module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQuestion, deleteQuestion, getQuestionsWithHandle }) => {
   router.get('/', function(req, res, next) {
     getQuestions()
       .then((questions) => res.json(questions))
@@ -21,6 +21,18 @@ module.exports = ({ getQuestions, getOptionsForQuestion, getUsersQuestions, addQ
   router.post('/withOptions', function(req, res, next) {
     const questionID = req.body.questionId;
     getOptionsForQuestion(questionID)
+      .then((options) => {
+        res.json(options);
+      })
+      .catch((err) => res.json({
+        error: err.message
+      }));
+  });
+
+  router.post('/delete', function(req, res, next) {
+    const questionID = req.body.questionId;
+
+    deleteQuestion(questionID)
       .then((options) => {
         res.json(options);
       })

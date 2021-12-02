@@ -12,7 +12,7 @@ export default function QuestionOptionsItem(props) {
         <span>{question}</span>
       </div>
       <div className="handleName">
-        <span>@{props.handle}</span>
+        <span>@{handle}</span>
       </div>
     </header>
     <div className="tweetContent">

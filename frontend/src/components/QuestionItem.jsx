@@ -9,7 +9,6 @@ export default function QuestionItem(props) {
   useEffect(() => {
     axios.post("/api/questions/withOptions", { questionId }).then((rows) => {
       setOptions(rows.data);
-      console.log("setOptions", options);
     });
   }, []);
 

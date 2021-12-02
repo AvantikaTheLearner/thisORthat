@@ -3,7 +3,15 @@ import axios from "axios";
 import QuestionItem from "./QuestionItem";
 
 export default function Myquestions(props) {
-  const {questions, currentUser} = props;
+  const [questions, setQuestions] = useState([]);
+  const {currentUser} = props;
+
+  useEffect(() => {
+    axios.get("/api/questions/withhandle").then((rows) => {
+      setQuestions(rows.data);
+    });
+  }, []);
+  
 
   const parsedQuestions = questions.map(question => (<QuestionItem
   key={question.id}

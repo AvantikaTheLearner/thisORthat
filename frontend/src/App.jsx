@@ -13,27 +13,10 @@ import Login from "./Login";
 export default function App(props) {
   const { currentUser, setCurrentUser} = props;
   const [categories, setCategories] = useState([]);
-  const [questions, setQuestions] = useState([]);
-  const [userquestions, setUserQuestions] = useState([]);
-
-
+ 
   useEffect(() => {
     axios.get("/api/categories").then((rows) => {
       setCategories(rows.data);
-    });
-  }, []);
-
-  useEffect(() => {
-    axios.get("/api/questions/withhandle").then((rows) => {
-      setQuestions(rows.data);
-    });
-  }, []);
-
-
-  useEffect(() => {
-    axios.post("/api/questions/forUser", { currentUser }).then((rows) => {
-      setUserQuestions(rows.data);
-      console.log("setUserQuestions", rows.data);
     });
   }, []);
   
@@ -79,7 +62,7 @@ export default function App(props) {
           <Routes>
             <Route
               path="/home"
-              element={<Home currentUser={currentUser} questions={userquestions} />}
+              element={<Home currentUser={currentUser}/>}
             />
             <Route
               path="/createquestion"
@@ -98,7 +81,7 @@ export default function App(props) {
             <Route
               path="/questions"
               element={
-                <Questions currentUser={currentUser} questions={questions} />
+                <Questions currentUser={currentUser} />
               }
             />
             <Route

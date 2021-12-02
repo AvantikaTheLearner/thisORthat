@@ -64,6 +64,18 @@ module.exports = (db) => {
       .catch(err => err);
   };
 
+  const deleteQuestion = (questionID) => {
+    const query = {
+      text: `DELETE FROM questions
+      WHERE id = $1 RETURNING *` ,
+      values: [questionID]
+    };
+
+    return db.query(query)
+      .then(result => result.rows[0])
+      .catch(err => err);
+  };
+
   const searchQuestionByText = (title) => {
     const data = ['%' + title + '%'];
     const query = {
@@ -179,6 +191,7 @@ module.exports = (db) => {
     getUsersQuestions,
     getCategories,
     getOptions,
+    deleteQuestion,
     getQuestions,
     searchQuestionByText,
     getQuestionsWithHandle,

@@ -1,13 +1,25 @@
 import HomeItem from "./HomeItem";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 
 export default function Home(props) {
-  const {questions} = props;
+  const {currentUser} = props;
+  const [userquestions, setUserQuestions] = useState([]);
 
-  const parsedQuestions = questions.map(question => (<HomeItem
+  useEffect(() => {
+    axios.post("/api/questions/forUser", { currentUser }).then((rows) => {
+      setUserQuestions(rows.data);
+    });
+  }, []);
+
+  const parsedQuestions = userquestions.map(question => (<HomeItem
     key={question.id}
     questionId={question.id}
     question={question.question_text}
-    handle={question.handle} />
+    handle={question.handle}
+    setUserQuestions={setUserQuestions}
+    currentUser={currentUser} />
   ));
 
   return (
