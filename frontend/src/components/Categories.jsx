@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CategoryItem from "./CategoryItem";
+import "./Categories.css";
 
 export default function Categories(props) {
   const { categories, setCategories } = props;
@@ -21,15 +22,18 @@ export default function Categories(props) {
   };
 
   return (
-    <>
-      <form onSubmit={addNewCategory}>
-        <input name="category" onChange={(e) => setCategory(e.target.value)} />
+    <div className="categories-container">
+      <form className="categoryform" onSubmit={addNewCategory}>
+        <input className="category" name="category" onChange={(e) => setCategory(e.target.value)} />
 
-        <button type="submit">
+        <button className="categorybutton" type="submit">
           Add new
         </button>
       </form>
-      <div>{parsedCategories}</div>
-    </>
+      <div className="categoryitem">
+        <h2>List of Categories:</h2>
+        {parsedCategories}
+        </div>
+    </div>
   );
 }

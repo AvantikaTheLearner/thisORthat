@@ -15,7 +15,7 @@ export default function App(props) {
   const [categories, setCategories] = useState([]);
   
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     axios.get("/api/categories").then((rows) => {
       setCategories(rows.data);
@@ -36,7 +36,6 @@ export default function App(props) {
 
   return (
     <>
-      <div className="App">
         <main className="layout">
           <section className="sidebar">
             <img
@@ -61,6 +60,7 @@ export default function App(props) {
               </button></Link>
             </nav>
           </section>
+          <section className="schedule">
           <Routes>
             <Route
               path="/home"
@@ -92,9 +92,8 @@ export default function App(props) {
             />
             <Route path="/login" element={!currentUser && <Login />} />
           </Routes>
-          {/* <section className="schedule"></section> */}
+          </section>
         </main>
-      </div>
     </>
   );
 }

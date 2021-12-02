@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import SearchItem from "./SearchItem";
+import "./Search.css";
 
 export default function Search(props) {
   const [searchquestion, setSearchQuestion] = useState(null);
@@ -15,8 +16,8 @@ export default function Search(props) {
   };
 
   return (
-    <div class="search-container">
-      <form>
+    <div className="search-container">
+      <form className="searchform">
         <input
           className="search"
           name="search"
@@ -24,11 +25,13 @@ export default function Search(props) {
           placeholder="search question by Text"
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <button type="submit" onClick={search}>
+        <button type="submit" className="searchbutton" onClick={search}>
           Search
         </button>
       </form>
+      <div className="searchitem">
       {searchquestion && <SearchItem question={searchquestion} /> }
+      </div>
     </div>
   );
 }

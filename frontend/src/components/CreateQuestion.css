@@ -6,33 +6,11 @@
   box-sizing: border-box;
   align-items: flex-start;
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 1);
 }
-.createquestion-image {
-  top: -83px;
-  left: -369px;
-  width: 1809px;
-  height: 1066px;
-  position: absolute;
-  object-fit: cover;
-  border-color: transparent;
-}
-.createquestion-image1 {
-  top: 200px;
-  left: 520px;
-  width: 400px;
-  height: 500px;
-  position: absolute;
-  object-fit: cover;
-  border-color: rgba(255, 255, 255, 0.4000000059604645);
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.20000000298023224);
-}
+
 .createquestion-image2 {
   top: 100px;
-  left: 160px;
+  left: 530px;
   width: 320px;
   height: 50px;
   position: absolute;
@@ -41,11 +19,11 @@
   border-style: solid;
   border-width: 3px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.20000000298023224);
+  background-color: white;
 }
 .createquestion-image3 {
   top: 200px;
-  left: 160px;
+  left: 530px;
   width: 320px;
   height: 50px;
   position: absolute;
@@ -54,11 +32,11 @@
   border-style: solid;
   border-width: 3px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.20000000298023224);
+  background-color: white;
 }
 .createquestion-image5 {
   top: 300px;
-  left: 160px;
+  left: 530px;
   width: 320px;
   height: 50px;
   position: absolute;
@@ -67,12 +45,12 @@
   border-style: solid;
   border-width: 3px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.20000000298023224);
+  background-color: white;
 }
 
 .createquestion-image4 {
   top: 400px;
-  left: 160px;
+  left: 530px;
   width: 330px;
   height: 55px;
   position: absolute;
@@ -81,11 +59,11 @@
   border-style: solid;
   border-width: 3px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.20000000298023224);
+  background-color: white;
 }
 .createquestion-text {
   top: 70px;
-  left: 160px;
+  left: 530px;
   color: black;
   width: auto;
   height: auto;
@@ -101,7 +79,7 @@
 }
 .createquestion-text1 {
   top: 170px;
-  left: 160px;
+  left: 530px;
   color: black;
   width: auto;
   height: auto;
@@ -117,7 +95,7 @@
 }
 .createquestion-text5 {
   top: 270px;
-  left: 160px;
+  left: 530px;
   color: black;
   width: auto;
   height: auto;
@@ -133,7 +111,7 @@
 }
 .createquestion-text0 {
   top: 370px;
-  left: 160px;
+  left: 530px;
   color: black;
   width: auto;
   height: auto;
@@ -148,8 +126,8 @@
   font-stretch: normal;
 }
 .createquestion-primary-button26 {
-  top: 470px;
-  left: 280px;
+  top: 480px;
+  left: 640px;
   width: 100px;
   height: 40px;
   display: flex;

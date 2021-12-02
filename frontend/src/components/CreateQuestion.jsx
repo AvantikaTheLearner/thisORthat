@@ -25,7 +25,6 @@ export default function CreateQuestion(props) {
   return (
     <div className="createquestion">
       <form>
-        <div>
           <label className="createquestion-text">Question</label>
           <input
             alt="Input16"
@@ -34,8 +33,6 @@ export default function CreateQuestion(props) {
             onChange={(e) => setQuestion(e.target.value)}
             className="createquestion-image2"
           />
-        </div>
-        <div>
           <label className="createquestion-text1">First Option</label>
           <input
             alt="Input17"
@@ -44,8 +41,6 @@ export default function CreateQuestion(props) {
             onChange={(e) => setFirstOption(e.target.value)}
             className="createquestion-image3"
           />
-        </div>
-        <div>
           <label className="createquestion-text5">Second Option</label>
           <input
             alt="Input17"
@@ -54,8 +49,6 @@ export default function CreateQuestion(props) {
             onChange={(e) => setSecondOption(e.target.value)}
             className="createquestion-image5"
           />
-        </div>
-        <div>
           <label for="category" className="createquestion-text0">
             Category
           </label>
@@ -68,7 +61,6 @@ export default function CreateQuestion(props) {
               return <option value={id}>{category.name}</option>;
             })}
           </select>
-        </div>
         <div className="createquestion-primary-button26">
           <button
             type="submit"

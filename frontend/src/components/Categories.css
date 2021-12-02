@@ -1,0 +1,23 @@
+.categories-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryform {
+  margin-top: 70px;
+  align-self: center;
+}
+
+.category {
+  font-size: 20px;
+  font-family: SF Pro Rounded;
+}
+.categorybutton {
+  font-size: 20px;
+  font-family: SF Pro Rounded;
+}
+
+.categoryitem {
+  margin-top: 90px;
+  align-self: center;
+}
