@@ -13,14 +13,16 @@ import Login from "./Login";
 export default function App(props) {
   const { currentUser, setCurrentUser} = props;
   const [categories, setCategories] = useState([]);
- 
+  
+  const navigate = useNavigate();
+  
   useEffect(() => {
     axios.get("/api/categories").then((rows) => {
       setCategories(rows.data);
     });
+    navigate('/home');
   }, []);
   
-  const navigate = useNavigate();
 
   const logout = function () {
     setCurrentUser(null);
